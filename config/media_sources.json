@@ -1,0 +1,87 @@
+[
+  {
+    "name": "Суспільне",
+    "url": "https://suspilne.media/",
+    "domains": ["suspilne.media"]
+  },
+  {
+    "name": "Еспресо",
+    "url": "https://espreso.tv/",
+    "domains": ["espreso.tv"]
+  },
+  {
+    "name": "Бабель",
+    "url": "https://babel.ua/",
+    "domains": ["babel.ua"]
+  },
+  {
+    "name": "Українська правда",
+    "url": "https://www.pravda.com.ua/",
+    "domains": ["pravda.com.ua", "ukrayinska-pravda.com"]
+  },
+  {
+    "name": "Радіо Свобода",
+    "url": "https://www.radiosvoboda.org/",
+    "domains": ["radiosvoboda.org"]
+  },
+  {
+    "name": "hromadske",
+    "url": "https://hromadske.ua/",
+    "domains": ["hromadske.ua"]
+  },
+  {
+    "name": "ZN.UA",
+    "url": "http://zn.ua/",
+    "domains": ["zn.ua"]
+  },
+  {
+    "name": "Тексти",
+    "url": "https://texty.org.ua/",
+    "domains": ["texty.org.ua"]
+  },
+  {
+    "name": "LB.ua",
+    "url": "http://lb.ua/",
+    "domains": ["lb.ua"]
+  },
+  {
+    "name": "Укрінформ",
+    "url": "https://www.ukrinform.ua/",
+    "domains": ["ukrinform.ua", "ukrinform.net"]
+  },
+  {
+    "name": "Ґрати",
+    "url": "https://graty.me/",
+    "domains": ["graty.me"]
+  },
+  {
+    "name": "Громадське радіо",
+    "url": "https://hromadske.radio/",
+    "domains": ["hromadske.radio"]
+  },
+  {
+    "name": "Український тиждень",
+    "url": "https://tyzhden.ua/",
+    "domains": ["tyzhden.ua"]
+  },
+  {
+    "name": "Рубрика",
+    "url": "https://rubryka.com/",
+    "domains": ["rubryka.com"]
+  },
+  {
+    "name": "Слово і Діло",
+    "url": "https://www.slovoidilo.ua/",
+    "domains": ["slovoidilo.ua"]
+  },
+  {
+    "name": "Новинарня",
+    "url": "https://novynarnia.com/",
+    "domains": ["novynarnia.com"]
+  },
+  {
+    "name": "Frontliner",
+    "url": "https://frontliner.ua/",
+    "domains": ["frontliner.ua"]
+  }
+]

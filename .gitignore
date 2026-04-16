@@ -1,0 +1,38 @@
+# Environment
+.env
+venv/
+env/
+
+# Data
+data/raw/
+data/processed/
+data/results/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Telegram session
+*.session
+*.session-journal
+
+# Logs
+*.log
+logs/
