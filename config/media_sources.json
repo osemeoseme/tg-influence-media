@@ -2,86 +2,1284 @@
   {
     "name": "Суспільне",
     "url": "https://suspilne.media/",
-    "domains": ["suspilne.media"]
+    "domains": [
+      "suspilne.media"
+    ],
+    "region": "Національні",
+    "type": "national"
   },
   {
     "name": "Еспресо",
     "url": "https://espreso.tv/",
-    "domains": ["espreso.tv"]
+    "domains": [
+      "espreso.tv"
+    ],
+    "region": "Київ",
+    "type": "national"
   },
   {
     "name": "Бабель",
     "url": "https://babel.ua/",
-    "domains": ["babel.ua"]
+    "domains": [
+      "babel.ua"
+    ],
+    "region": "Київ",
+    "type": "national"
   },
   {
     "name": "Українська правда",
     "url": "https://www.pravda.com.ua/",
-    "domains": ["pravda.com.ua", "ukrayinska-pravda.com"]
+    "domains": [
+      "pravda.com.ua",
+      "ukrayinska-pravda.com"
+    ],
+    "region": "Київ",
+    "type": "national"
   },
   {
     "name": "Радіо Свобода",
     "url": "https://www.radiosvoboda.org/",
-    "domains": ["radiosvoboda.org"]
+    "domains": [
+      "radiosvoboda.org"
+    ],
+    "region": "Київ обл",
+    "type": "national"
   },
   {
     "name": "hromadske",
     "url": "https://hromadske.ua/",
-    "domains": ["hromadske.ua"]
+    "domains": [
+      "hromadske.ua"
+    ],
+    "region": "Київ",
+    "type": "national"
   },
   {
     "name": "ZN.UA",
     "url": "http://zn.ua/",
-    "domains": ["zn.ua"]
+    "domains": [
+      "zn.ua"
+    ],
+    "region": "Київ",
+    "type": "national"
   },
   {
     "name": "Тексти",
     "url": "https://texty.org.ua/",
-    "domains": ["texty.org.ua"]
+    "domains": [
+      "texty.org.ua"
+    ],
+    "region": "Київ обл",
+    "type": "national"
   },
   {
     "name": "LB.ua",
     "url": "http://lb.ua/",
-    "domains": ["lb.ua"]
+    "domains": [
+      "lb.ua"
+    ],
+    "region": "Київ",
+    "type": "national"
   },
   {
     "name": "Укрінформ",
     "url": "https://www.ukrinform.ua/",
-    "domains": ["ukrinform.ua", "ukrinform.net"]
+    "domains": [
+      "ukrinform.ua",
+      "ukrinform.net"
+    ],
+    "region": "Київ",
+    "type": "national"
   },
   {
     "name": "Ґрати",
     "url": "https://graty.me/",
-    "domains": ["graty.me"]
+    "domains": [
+      "graty.me"
+    ],
+    "region": "Київ",
+    "type": "national"
   },
   {
     "name": "Громадське радіо",
     "url": "https://hromadske.radio/",
-    "domains": ["hromadske.radio"]
+    "domains": [
+      "hromadske.radio"
+    ],
+    "region": "Київ обл",
+    "type": "national"
   },
   {
     "name": "Український тиждень",
     "url": "https://tyzhden.ua/",
-    "domains": ["tyzhden.ua"]
+    "domains": [
+      "tyzhden.ua"
+    ],
+    "region": "Київ обл",
+    "type": "national"
   },
   {
     "name": "Рубрика",
     "url": "https://rubryka.com/",
-    "domains": ["rubryka.com"]
+    "domains": [
+      "rubryka.com"
+    ],
+    "region": "Київ",
+    "type": "national"
   },
   {
     "name": "Слово і Діло",
     "url": "https://www.slovoidilo.ua/",
-    "domains": ["slovoidilo.ua"]
+    "domains": [
+      "slovoidilo.ua"
+    ],
+    "region": "Київ",
+    "type": "national"
   },
   {
     "name": "Новинарня",
     "url": "https://novynarnia.com/",
-    "domains": ["novynarnia.com"]
+    "domains": [
+      "novynarnia.com"
+    ],
+    "region": "Київ обл",
+    "type": "national"
   },
   {
     "name": "Frontliner",
     "url": "https://frontliner.ua/",
-    "domains": ["frontliner.ua"]
+    "domains": [
+      "frontliner.ua",
+      "frontliner.com.ua"
+    ],
+    "region": "Київ",
+    "type": "national"
+  },
+  {
+    "name": "МикВісті",
+    "url": "https://nikvesti.com/",
+    "domains": [
+      "nikvesti.com"
+    ],
+    "region": "Миколаїв",
+    "type": "regional"
+  },
+  {
+    "name": "HUBZ Inform",
+    "url": "https://hubz.ua/",
+    "domains": [
+      "hubz.ua"
+    ],
+    "region": "Київ обл",
+    "type": "regional"
+  },
+  {
+    "name": "Інтент",
+    "url": "https://intent.press/",
+    "domains": [
+      "intent.press"
+    ],
+    "region": "Одеса",
+    "type": "regional"
+  },
+  {
+    "name": "Бахмут.in.ua",
+    "url": "https://bahmut.in.ua/",
+    "domains": [
+      "bahmut.in.ua"
+    ],
+    "region": "Донецька",
+    "type": "regional"
+  },
+  {
+    "name": "Новини здорової людини",
+    "url": "https://nzl.theukrainians.org/",
+    "domains": [
+      "nzl.theukrainians.org"
+    ],
+    "region": "Київ",
+    "type": "regional"
+  },
+  {
+    "name": "Відбудова",
+    "url": "https://vidbudova.zp.ua/",
+    "domains": [
+      "vidbudova.zp.ua"
+    ],
+    "region": "Запоріжжя",
+    "type": "regional"
+  },
+  {
+    "name": "Східний Варіант",
+    "url": "https://v-variant.com.ua/",
+    "domains": [
+      "v-variant.com.ua"
+    ],
+    "region": "Донецька",
+    "type": "regional"
+  },
+  {
+    "name": "Доступ Медіа",
+    "url": "https://dostyp.com.ua/",
+    "domains": [
+      "dostyp.com.ua"
+    ],
+    "region": "Кропивницький",
+    "type": "regional"
+  },
+  {
+    "name": "ЛЮК",
+    "url": "https://lyuk.media/",
+    "domains": [
+      "lyuk.media"
+    ],
+    "region": "Харків",
+    "type": "regional"
+  },
+  {
+    "name": "МОСТ",
+    "url": "https://most.ks.ua/",
+    "domains": [
+      "most.ks.ua"
+    ],
+    "region": "Херсон",
+    "type": "regional"
+  },
+  {
+    "name": "18000",
+    "url": "https://18000.com.ua/",
+    "domains": [
+      "18000.com.ua"
+    ],
+    "region": "Черкаси",
+    "type": "regional"
+  },
+  {
+    "name": "Махала",
+    "url": "https://mahala.com.ua/",
+    "domains": [
+      "mahala.com.ua"
+    ],
+    "region": "Одеса",
+    "type": "regional"
+  },
+  {
+    "name": "Полтавська хвиля",
+    "url": "https://poltavawave.com.ua/",
+    "domains": [
+      "poltavawave.com.ua"
+    ],
+    "region": "Полтава",
+    "type": "regional"
+  },
+  {
+    "name": "Gwara Media",
+    "url": "https://gwaramedia.com/",
+    "domains": [
+      "gwaramedia.com"
+    ],
+    "region": "Харків",
+    "type": "regional"
+  },
+  {
+    "name": "КУРС",
+    "url": "https://kurs.if.ua/",
+    "domains": [
+      "kurs.if.ua"
+    ],
+    "region": "Івано-Франківськ",
+    "type": "regional"
+  },
+  {
+    "name": "Медіаплатформа Вгору",
+    "url": "https://vgoru.org/",
+    "domains": [
+      "vgoru.org"
+    ],
+    "region": "Херсон",
+    "type": "regional"
+  },
+  {
+    "name": "Є",
+    "url": "https://ye.ua/",
+    "domains": [
+      "ye.ua"
+    ],
+    "region": "Хмельницька",
+    "type": "regional"
+  },
+  {
+    "name": "The Bucha City",
+    "url": "https://thebuchacity.com/",
+    "domains": [
+      "thebuchacity.com"
+    ],
+    "region": "Київ обл",
+    "type": "regional"
+  },
+  {
+    "name": "Гречка",
+    "url": "https://gre4ka.info/",
+    "domains": [
+      "gre4ka.info"
+    ],
+    "region": "Кропивницький",
+    "type": "regional"
+  },
+  {
+    "name": "Полтавська Думка",
+    "url": "https://dumka.poltava.ua/",
+    "domains": [
+      "dumka.poltava.ua"
+    ],
+    "region": "Полтава",
+    "type": "regional"
+  },
+  {
+    "name": "Городок.City",
+    "url": "https://horodok.city/",
+    "domains": [
+      "horodok.city"
+    ],
+    "region": "Хмельницький",
+    "type": "regional"
+  },
+  {
+    "name": "Інформер",
+    "url": "https://informer.od.ua/",
+    "domains": [
+      "informer.od.ua"
+    ],
+    "region": "Одеса",
+    "type": "regional"
+  },
+  {
+    "name": "ІА Дивись.info",
+    "url": "https://dyvys.info/",
+    "domains": [
+      "dyvys.info"
+    ],
+    "region": "Львів",
+    "type": "regional"
+  },
+  {
+    "name": "Чернівці С4",
+    "url": "https://c4.com.ua/",
+    "domains": [
+      "c4.com.ua"
+    ],
+    "region": "Чернівці",
+    "type": "regional"
+  },
+  {
+    "name": "Крим Реалії",
+    "url": "https://ua.krymr.com/",
+    "domains": [
+      "ua.krymr.com",
+      "krymr.com"
+    ],
+    "region": "Крим",
+    "type": "regional"
+  },
+  {
+    "name": "Гард.City",
+    "url": "https://thegard.city/",
+    "domains": [
+      "thegard.city"
+    ],
+    "region": "Миколаїв",
+    "type": "regional"
+  },
+  {
+    "name": "Накіпело",
+    "url": "https://nakypilo.ua/",
+    "domains": [
+      "nakypilo.ua"
+    ],
+    "region": "Харків",
+    "type": "regional"
+  },
+  {
+    "name": "Galka.if.ua",
+    "url": "https://galka.if.ua/",
+    "domains": [
+      "galka.if.ua"
+    ],
+    "region": "Івано-Франківськ",
+    "type": "regional"
+  },
+  {
+    "name": "Трибуна Суми",
+    "url": "https://trybuna.sumy.ua/",
+    "domains": [
+      "trybuna.sumy.ua"
+    ],
+    "region": "Суми",
+    "type": "regional"
+  },
+  {
+    "name": "Район.in.ua",
+    "url": "https://rayon.in.ua/",
+    "domains": [
+      "rayon.in.ua"
+    ],
+    "region": "Волинь",
+    "type": "regional"
+  },
+  {
+    "name": "INFORM.ZP.UA",
+    "url": "https://www.inform.zp.ua/",
+    "domains": [
+      "inform.zp.ua"
+    ],
+    "region": "Запоріжжя",
+    "type": "regional"
+  },
+  {
+    "name": "Odesa Online",
+    "url": "https://odessa.online/",
+    "domains": [
+      "odessa.online"
+    ],
+    "region": "Одеса",
+    "type": "regional"
+  },
+  {
+    "name": "Об'єктив-новини",
+    "url": "https://www.objectiv.tv/uk/",
+    "domains": [
+      "objectiv.tv"
+    ],
+    "region": "Харків",
+    "type": "regional"
+  },
+  {
+    "name": "Вільне радіо",
+    "url": "https://freeradio.com.ua/",
+    "domains": [
+      "freeradio.com.ua"
+    ],
+    "region": "Донецька",
+    "type": "regional"
+  },
+  {
+    "name": "Зміст",
+    "url": "https://zmist.pl.ua/",
+    "domains": [
+      "zmist.pl.ua"
+    ],
+    "region": "Полтава",
+    "type": "regional"
+  },
+  {
+    "name": "Трибун",
+    "url": "https://tribun.com.ua/",
+    "domains": [
+      "tribun.com.ua"
+    ],
+    "region": "Луганськ",
+    "type": "regional"
+  },
+  {
+    "name": "О6262",
+    "url": "https://www.6262.com.ua/",
+    "domains": [
+      "6262.com.ua"
+    ],
+    "region": "Донецька",
+    "type": "regional"
+  },
+  {
+    "name": "Локатор-Медіа",
+    "url": "https://lokatormedia.online/",
+    "domains": [
+      "lokatormedia.online"
+    ],
+    "region": "Запоріжжя",
+    "type": "regional"
+  },
+  {
+    "name": "CBN",
+    "url": "https://cbn.com.ua/",
+    "domains": [
+      "cbn.com.ua"
+    ],
+    "region": "Кропивницький",
+    "type": "regional"
+  },
+  {
+    "name": "Харків Times",
+    "url": "https://times.kharkiv.ua/",
+    "domains": [
+      "times.kharkiv.ua"
+    ],
+    "region": "Харків",
+    "type": "regional"
+  },
+  {
+    "name": "Менщина",
+    "url": "https://mena.org.ua/",
+    "domains": [
+      "mena.org.ua"
+    ],
+    "region": "Чернігів",
+    "type": "regional"
+  },
+  {
+    "name": "Біляївка.City",
+    "url": "https://bilyayivka.city/",
+    "domains": [
+      "bilyayivka.city"
+    ],
+    "region": "Одеса",
+    "type": "regional"
+  },
+  {
+    "name": "Житомир інфо",
+    "url": "https://www.zhitomir.info/",
+    "domains": [
+      "zhitomir.info"
+    ],
+    "region": "Житомир",
+    "type": "regional"
+  },
+  {
+    "name": "Преступності.НЕТ",
+    "url": "https://news.pn/",
+    "domains": [
+      "news.pn"
+    ],
+    "region": "Миколаїв",
+    "type": "regional"
+  },
+  {
+    "name": "0462.ua",
+    "url": "https://www.0462.ua/",
+    "domains": [
+      "0462.ua"
+    ],
+    "region": "Чернігів",
+    "type": "regional"
+  },
+  {
+    "name": "Бердянськ 24",
+    "url": "https://www.brd24.com/",
+    "domains": [
+      "brd24.com"
+    ],
+    "region": "Запоріжжя",
+    "type": "regional"
+  },
+  {
+    "name": "Харків 2дей",
+    "url": "https://2day.kh.ua/",
+    "domains": [
+      "2day.kh.ua"
+    ],
+    "region": "Харків",
+    "type": "regional"
+  },
+  {
+    "name": "СЛОБІДСЬКИЙ КРАЙ",
+    "url": "https://www.slk.kh.ua/",
+    "domains": [
+      "slk.kh.ua"
+    ],
+    "region": "Харків",
+    "type": "regional"
+  },
+  {
+    "name": "Молодий буковинець",
+    "url": "https://molbuk.ua/",
+    "domains": [
+      "molbuk.ua"
+    ],
+    "region": "Чернівці",
+    "type": "regional"
+  },
+  {
+    "name": "Жовті Води.City",
+    "url": "https://zhovtivody.city/",
+    "domains": [
+      "zhovtivody.city"
+    ],
+    "region": "Дніпро",
+    "type": "regional"
+  },
+  {
+    "name": "Перший Криворізький",
+    "url": "https://1kr.ua/",
+    "domains": [
+      "1kr.ua"
+    ],
+    "region": "Дніпро",
+    "type": "regional"
+  },
+  {
+    "name": "061.ua",
+    "url": "https://www.061.ua/",
+    "domains": [
+      "061.ua"
+    ],
+    "region": "Запоріжжя",
+    "type": "regional"
+  },
+  {
+    "name": "MyNizhyn",
+    "url": "https://mynizhyn.com/",
+    "domains": [
+      "mynizhyn.com"
+    ],
+    "region": "Чернігів",
+    "type": "regional"
+  },
+  {
+    "name": "Час Чернігівський",
+    "url": "https://cntime.cn.ua/",
+    "domains": [
+      "cntime.cn.ua"
+    ],
+    "region": "Чернігів",
+    "type": "regional"
+  },
+  {
+    "name": "Фарватер.Схід",
+    "url": "https://farvatermedia.com/",
+    "domains": [
+      "farvatermedia.com"
+    ],
+    "region": "Луганськ",
+    "type": "regional"
+  },
+  {
+    "name": "На межі",
+    "url": "https://mezha.city/",
+    "domains": [
+      "mezha.city"
+    ],
+    "region": "Суми",
+    "type": "regional"
+  },
+  {
+    "name": "Нова українська школа",
+    "url": "https://nus.org.ua/",
+    "domains": [
+      "nus.org.ua"
+    ],
+    "region": "Київ",
+    "type": "regional"
+  },
+  {
+    "name": "Реальна газета",
+    "url": "https://realgazeta.com.ua/",
+    "domains": [
+      "realgazeta.com.ua"
+    ],
+    "region": "Луганськ",
+    "type": "regional"
+  },
+  {
+    "name": "Твоє місто",
+    "url": "https://tvoemisto.tv/",
+    "domains": [
+      "tvoemisto.tv"
+    ],
+    "region": "Львів",
+    "type": "regional"
+  },
+  {
+    "name": "Цукр",
+    "url": "https://cukr.city/",
+    "domains": [
+      "cukr.city"
+    ],
+    "region": "Суми",
+    "type": "regional"
+  },
+  {
+    "name": "Куп'янськ.City",
+    "url": "https://kupiansk.city/",
+    "domains": [
+      "kupiansk.city"
+    ],
+    "region": "Харків",
+    "type": "regional"
+  },
+  {
+    "name": "Думка",
+    "url": "https://dumka.media/",
+    "domains": [
+      "dumka.media"
+    ],
+    "region": "Харків",
+    "type": "regional"
+  },
+  {
+    "name": "Сєвєродонецьк онлайн",
+    "url": "https://sd.ua/",
+    "domains": [
+      "sd.ua"
+    ],
+    "region": "Луганськ",
+    "type": "regional"
+  },
+  {
+    "name": "О512",
+    "url": "https://www.0512.com.ua/",
+    "domains": [
+      "0512.com.ua"
+    ],
+    "region": "Миколаїв",
+    "type": "regional"
+  },
+  {
+    "name": "Varosh",
+    "url": "https://varosh.com.ua/",
+    "domains": [
+      "varosh.com.ua"
+    ],
+    "region": "Закарпаття",
+    "type": "regional"
+  },
+  {
+    "name": "Глухів.City",
+    "url": "https://hlukhiv.city/",
+    "domains": [
+      "hlukhiv.city"
+    ],
+    "region": "Суми",
+    "type": "regional"
+  },
+  {
+    "name": "Finance.ua",
+    "url": "https://finance.ua/",
+    "domains": [
+      "finance.ua"
+    ],
+    "region": "Київ обл",
+    "type": "national"
+  },
+  {
+    "name": "Горинь інфо",
+    "url": "https://horyn.info/",
+    "domains": [
+      "horyn.info"
+    ],
+    "region": "Рівне",
+    "type": "regional"
+  },
+  {
+    "name": "Новини Донбасу",
+    "url": "https://novosti.dn.ua/",
+    "domains": [
+      "novosti.dn.ua"
+    ],
+    "region": "Донецька",
+    "type": "regional"
+  },
+  {
+    "name": "Інформ Агенція Вчасно",
+    "url": "https://vchasnoua.com/",
+    "domains": [
+      "vchasnoua.com"
+    ],
+    "region": "Донецька",
+    "type": "regional"
+  },
+  {
+    "name": "0629.com.ua",
+    "url": "https://www.0629.com.ua/",
+    "domains": [
+      "0629.com.ua"
+    ],
+    "region": "Донецька",
+    "type": "regional"
+  },
+  {
+    "name": "Карачун",
+    "url": "https://karachun.com.ua/",
+    "domains": [
+      "karachun.com.ua"
+    ],
+    "region": "Донецька",
+    "type": "regional"
+  },
+  {
+    "name": "Кременчуцький Телеграф",
+    "url": "https://www.telegraf.in.ua/",
+    "domains": [
+      "telegraf.in.ua"
+    ],
+    "region": "Полтава",
+    "type": "regional"
+  },
+  {
+    "name": "GrivnaUA",
+    "url": "https://grivna.ua/",
+    "domains": [
+      "grivna.ua"
+    ],
+    "region": "Херсон",
+    "type": "regional"
+  },
+  {
+    "name": "Медіа агентство АСС",
+    "url": "https://acc.cv.ua/",
+    "domains": [
+      "acc.cv.ua"
+    ],
+    "region": "Чернівці",
+    "type": "regional"
+  },
+  {
+    "name": "Еспресо: Біла Церква",
+    "url": "https://bc.espreso.tv/",
+    "domains": [
+      "bc.espreso.tv"
+    ],
+    "region": "Київ",
+    "type": "regional"
+  },
+  {
+    "name": "Mind.ua",
+    "url": "http://Mind.ua",
+    "domains": [
+      "mind.ua"
+    ],
+    "region": "Київ",
+    "type": "national"
+  },
+  {
+    "name": "20 хвилин Вінниця",
+    "url": "https://vn.20minut.ua/",
+    "domains": [
+      "vn.20minut.ua",
+      "20minut.ua"
+    ],
+    "region": "Вінниця",
+    "type": "regional"
+  },
+  {
+    "name": "Слово правди",
+    "url": "https://slovopravdy.com.ua/",
+    "domains": [
+      "slovopravdy.com.ua"
+    ],
+    "region": "Волинська",
+    "type": "regional"
+  },
+  {
+    "name": "misto.media",
+    "url": "https://misto.media/",
+    "domains": [
+      "misto.media"
+    ],
+    "region": "Волинська",
+    "type": "regional"
+  },
+  {
+    "name": "Перший Запорізький",
+    "url": "https://1news.zp.ua/",
+    "domains": [
+      "1news.zp.ua"
+    ],
+    "region": "Запоріжжя",
+    "type": "regional"
+  },
+  {
+    "name": "SODA",
+    "url": "https://soda.zp.ua/",
+    "domains": [
+      "soda.zp.ua"
+    ],
+    "region": "Запоріжжя",
+    "type": "regional"
+  },
+  {
+    "name": "Букви",
+    "url": "https://bukvy.org/",
+    "domains": [
+      "bukvy.org"
+    ],
+    "region": "Київ",
+    "type": "national"
+  },
+  {
+    "name": "The Page",
+    "url": "https://thepage.ua/",
+    "domains": [
+      "thepage.ua"
+    ],
+    "region": "Київ",
+    "type": "national"
+  },
+  {
+    "name": "Speka",
+    "url": "https://speka.ua/",
+    "domains": [
+      "speka.ua"
+    ],
+    "region": "Київ",
+    "type": "national"
+  },
+  {
+    "name": "Мілітарний",
+    "url": "http://militarnyi.com/",
+    "domains": [
+      "militarnyi.com"
+    ],
+    "region": "Київ",
+    "type": "national"
+  },
+  {
+    "name": "Освіторія.Медіа",
+    "url": "https://osvitoria.media/",
+    "domains": [
+      "osvitoria.media"
+    ],
+    "region": "Київ",
+    "type": "national"
+  },
+  {
+    "name": "ШОТАМ",
+    "url": "https://shotam.info/",
+    "domains": [
+      "shotam.info"
+    ],
+    "region": "Київ",
+    "type": "national"
+  },
+  {
+    "name": "Голос Криму",
+    "url": "https://www.voicecrimea.com.ua/uk/",
+    "domains": [
+      "voicecrimea.com.ua"
+    ],
+    "region": "Крим",
+    "type": "regional"
+  },
+  {
+    "name": "КРВ.медіа",
+    "url": "https://krv.media/",
+    "domains": [
+      "krv.media"
+    ],
+    "region": "Київ",
+    "type": "national"
+  },
+  {
+    "name": "Вечірній Київ",
+    "url": "https://vechirniy.kyiv.ua/",
+    "domains": [
+      "vechirniy.kyiv.ua"
+    ],
+    "region": "Київ",
+    "type": "regional"
+  },
+  {
+    "name": "Qirim media",
+    "url": "https://qirim.news/",
+    "domains": [
+      "qirim.news"
+    ],
+    "region": "Крим",
+    "type": "regional"
+  },
+  {
+    "name": "Neformat",
+    "url": "https://www.neformat.com.ua/",
+    "domains": [
+      "neformat.com.ua"
+    ],
+    "region": "Київ",
+    "type": "national"
+  },
+  {
+    "name": "Вчися.Медіа",
+    "url": "https://vchysia.media/",
+    "domains": [
+      "vchysia.media"
+    ],
+    "region": "Київ",
+    "type": "national"
+  },
+  {
+    "name": "Новини.LIVE",
+    "url": "https://novyny.live/",
+    "domains": [
+      "novyny.live"
+    ],
+    "region": "Київ",
+    "type": "national"
+  },
+  {
+    "name": "Вісник Кіровоградщини",
+    "url": "https://vk.kr.ua/",
+    "domains": [
+      "vk.kr.ua"
+    ],
+    "region": "Кіровоградська",
+    "type": "regional"
+  },
+  {
+    "name": "Знам'янка.City",
+    "url": "https://znamyanka.city/",
+    "domains": [
+      "znamyanka.city"
+    ],
+    "region": "Кіровоградська",
+    "type": "regional"
+  },
+  {
+    "name": "ZAXID.NET",
+    "url": "https://zaxid.net/",
+    "domains": [
+      "zaxid.net"
+    ],
+    "region": "Львів",
+    "type": "regional"
+  },
+  {
+    "name": "Сихів.Медіа",
+    "url": "https://sykhiv.media/",
+    "domains": [
+      "sykhiv.media"
+    ],
+    "region": "Львів",
+    "type": "regional"
+  },
+  {
+    "name": "Інтерфакс-Україна",
+    "url": "https://interfax.com.ua/",
+    "domains": [
+      "interfax.com.ua"
+    ],
+    "region": "Київ",
+    "type": "national"
+  },
+  {
+    "name": "Одеське життя",
+    "url": "https://odessa-life.od.ua/",
+    "domains": [
+      "odessa-life.od.ua"
+    ],
+    "region": "Одеса",
+    "type": "regional"
+  },
+  {
+    "name": "Море Людей",
+    "url": "https://moreliudei.media/",
+    "domains": [
+      "moreliudei.media"
+    ],
+    "region": "Одеса",
+    "type": "regional"
+  },
+  {
+    "name": "Точка Сходу",
+    "url": "https://cxid.media/",
+    "domains": [
+      "cxid.media"
+    ],
+    "region": "Луганськ",
+    "type": "regional"
+  },
+  {
+    "name": "Хутір.News",
+    "url": "https://hutir.news/",
+    "domains": [
+      "hutir.news"
+    ],
+    "region": "Суми",
+    "type": "regional"
+  },
+  {
+    "name": "MISTOSUMY.com",
+    "url": "https://mistosumy.com/",
+    "domains": [
+      "mistosumy.com"
+    ],
+    "region": "Суми",
+    "type": "regional"
+  },
+  {
+    "name": "Kordon.Media",
+    "url": "https://kordon.media/",
+    "domains": [
+      "kordon.media"
+    ],
+    "region": "Суми",
+    "type": "regional"
+  },
+  {
+    "name": "Свеса.Online",
+    "url": "https://svesa.online/",
+    "domains": [
+      "svesa.online"
+    ],
+    "region": "Суми",
+    "type": "regional"
+  },
+  {
+    "name": "Обрії Ізюмщини",
+    "url": "https://obrii.com.ua/",
+    "domains": [
+      "obrii.com.ua"
+    ],
+    "region": "Харківська",
+    "type": "regional"
+  },
+  {
+    "name": "Громада.Груп",
+    "url": "https://gromada.group/",
+    "domains": [
+      "gromada.group"
+    ],
+    "region": "Харківська",
+    "type": "regional"
+  },
+  {
+    "name": "МедіаПорт",
+    "url": "https://mediaport.ua/",
+    "domains": [
+      "mediaport.ua"
+    ],
+    "region": "Харківська",
+    "type": "regional"
+  },
+  {
+    "name": "Радіо Накипіло",
+    "url": "https://radio.nakypilo.ua/",
+    "domains": [
+      "radio.nakypilo.ua"
+    ],
+    "region": "Харківська",
+    "type": "regional"
+  },
+  {
+    "name": "057.ua",
+    "url": "https://www.057.ua/",
+    "domains": [
+      "057.ua"
+    ],
+    "region": "Харківська",
+    "type": "regional"
+  },
+  {
+    "name": "Волинь Online",
+    "url": "https://volynonline.com/",
+    "domains": [
+      "volynonline.com"
+    ],
+    "region": "Волинська",
+    "type": "regional"
+  },
+  {
+    "name": "Вільногірськ IN UA",
+    "url": "https://vilnohirsk.in.ua/",
+    "domains": [
+      "vilnohirsk.in.ua"
+    ],
+    "region": "Дніпро",
+    "type": "regional"
+  },
+  {
+    "name": "Dnipro.media",
+    "url": "https://www.dnipro.media/",
+    "domains": [
+      "dnipro.media"
+    ],
+    "region": "Дніпро",
+    "type": "regional"
+  },
+  {
+    "name": "Місто і річка",
+    "url": "https://mistorichka.media/",
+    "domains": [
+      "mistorichka.media"
+    ],
+    "region": "Дніпро",
+    "type": "regional"
+  },
+  {
+    "name": "Прихист",
+    "url": "https://www.prikhist.com/",
+    "domains": [
+      "prikhist.com"
+    ],
+    "region": "Дніпро",
+    "type": "regional"
+  },
+  {
+    "name": "Kramatorsk Post",
+    "url": "https://www.kramatorskpost.com/",
+    "domains": [
+      "kramatorskpost.com"
+    ],
+    "region": "Донецька",
+    "type": "regional"
+  },
+  {
+    "name": "PMG.ua",
+    "url": "https://pmg.ua/",
+    "domains": [
+      "pmg.ua"
+    ],
+    "region": "Закарпатська",
+    "type": "regional"
+  },
+  {
+    "name": "Zaholovok.com.ua",
+    "url": "http://Zaholovok.com.ua",
+    "domains": [
+      "zaholovok.com.ua"
+    ],
+    "region": "Закарпатська",
+    "type": "regional"
+  },
+  {
+    "name": "IPC-Південь",
+    "url": "https://ipc.org.ua/uk/",
+    "domains": [
+      "ipc.org.ua"
+    ],
+    "region": "Херсонська",
+    "type": "regional"
+  },
+  {
+    "name": "0372",
+    "url": "https://www.0372.ua/",
+    "domains": [
+      "0372.ua"
+    ],
+    "region": "Чернівецька",
+    "type": "regional"
+  },
+  {
+    "name": "Шпальта",
+    "url": "https://shpalta.media/",
+    "domains": [
+      "shpalta.media"
+    ],
+    "region": "Чернівецька",
+    "type": "regional"
+  },
+  {
+    "name": "PECHERA.info",
+    "url": "https://pechera.info/",
+    "domains": [
+      "pechera.info"
+    ],
+    "region": "Чернігівська",
+    "type": "regional"
+  },
+  {
+    "name": "Вість",
+    "url": "https://vestgazeta.com.ua/",
+    "domains": [
+      "vestgazeta.com.ua"
+    ],
+    "region": "Чернігівська",
+    "type": "regional"
   }
 ]

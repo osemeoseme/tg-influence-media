@@ -17,24 +17,74 @@ from src.utils.config import (
 )
 
 
-def scrape_data():
-    """Scrape data from Telegram and media sources."""
+def scrape_data(force_rescrape=False):
+    """
+    Scrape data from Telegram and media sources.
+
+    Args:
+        force_rescrape: If True, re-download all data even if it exists
+    """
+    from datetime import datetime
+    start_time = datetime.now()
+
     print("\n" + "=" * 80)
-    print("DATA COLLECTION PHASE")
+    print("🚀 DATA COLLECTION PHASE")
     print("=" * 80)
+    print(f"⏰ Started at: {start_time.strftime('%Y-%m-%d %H:%M:%S')}")
+
+    if force_rescrape:
+        print("\n⚠️  FORCE RESCRAPE MODE: Will re-download all data")
+        print("   ⚡ This will take longer but ensures fresh data")
+        print("   💾 Backups will be created before overwriting")
+    else:
+        print("\n📁 SMART MODE: Will skip channels/sources with existing data")
+        print("   ⚡ This is fast if data already exists")
+        print("   💡 Use --force to re-download everything")
 
     # Scrape Telegram channels
-    print("\n[1/2] Scraping Telegram channels...")
-    telegram_scraper = TelegramScraper()
-    asyncio.run(telegram_scraper.scrape_all_channels())
+    print("\n" + "=" * 80)
+    print("📱 [1/2] TELEGRAM CHANNELS")
+    print("=" * 80)
+    tg_start = datetime.now()
+
+    telegram_scraper = TelegramScraper(
+        force_rescrape=force_rescrape,
+        skip_existing=not force_rescrape
+    )
+    all_tg_messages = asyncio.run(telegram_scraper.scrape_all_channels())
+    telegram_scraper.save_all_messages(all_tg_messages)
+
+    tg_duration = (datetime.now() - tg_start).total_seconds()
+    print(f"\n⏱️  Telegram scraping took: {tg_duration:.1f} seconds ({tg_duration/60:.1f} minutes)")
 
     # Scrape media sources
-    print("\n[2/2] Scraping media sources...")
-    media_scraper = MediaScraper()
-    media_scraper.scrape_all_media(articles_per_source=100)
-
     print("\n" + "=" * 80)
-    print("DATA COLLECTION COMPLETE")
+    print("📰 [2/2] MEDIA SOURCES")
+    print("=" * 80)
+    media_start = datetime.now()
+
+    media_scraper = MediaScraper(
+        force_rescrape=force_rescrape,
+        skip_existing=not force_rescrape
+    )
+    all_articles = media_scraper.scrape_all_media(articles_per_source=100)
+    media_scraper.save_all_articles(all_articles)
+
+    media_duration = (datetime.now() - media_start).total_seconds()
+    print(f"\n⏱️  Media scraping took: {media_duration:.1f} seconds ({media_duration/60:.1f} minutes)")
+
+    # Final summary
+    total_duration = (datetime.now() - start_time).total_seconds()
+    print("\n" + "=" * 80)
+    print("✅ DATA COLLECTION COMPLETE")
+    print("=" * 80)
+    print(f"⏰ Total time: {total_duration:.1f} seconds ({total_duration/60:.1f} minutes)")
+    print(f"📊 Telegram channels: {len(all_tg_messages)}")
+    total_tg_msgs = sum(len(msgs) for msgs in all_tg_messages.values())
+    print(f"📨 Total Telegram messages: {total_tg_msgs:,}")
+    print(f"📰 Media sources: {len(all_articles)}")
+    total_articles = sum(len(arts) for arts in all_articles.values())
+    print(f"📄 Total articles: {total_articles:,}")
     print("=" * 80)
 
 
@@ -150,18 +200,23 @@ def main():
         choices=["scrape", "analyze", "report", "all"],
         help="Command to execute",
     )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Force re-scrape all data even if it already exists (default: skip existing)",
+    )
 
     args = parser.parse_args()
 
     if args.command == "scrape":
-        scrape_data()
+        scrape_data(force_rescrape=args.force)
     elif args.command == "analyze":
-        analyze_data()
+        all_results, bidirectional_results = analyze_data()
     elif args.command == "report":
         generate_report()
     elif args.command == "all":
-        scrape_data()
-        analyze_data()
+        scrape_data(force_rescrape=args.force)
+        all_results, bidirectional_results = analyze_data()
         generate_report()
 
 
