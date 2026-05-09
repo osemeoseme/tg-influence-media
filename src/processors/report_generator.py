@@ -68,6 +68,26 @@ class ReportGenerator:
             report.append(f"    - Similarity only: {breakdown['similarity_only']}")
             report.append(f"    - Multiple methods: {breakdown['multiple_methods']}")
 
+            # Content type distribution (if available)
+            if 'content_types' in stats:
+                content_types = stats['content_types']
+                report.append(f"  Content type distribution:")
+                for ct, pct in content_types.get('content_type_percentages', {}).items():
+                    count = content_types['content_type_counts'].get(ct, 0)
+                    if pct > 0:
+                        report.append(f"    - {ct}: {count} ({pct:.1f}%)")
+
+            # Non-media references (if available)
+            if 'references' in stats:
+                ref_stats = stats['references']
+                report.append(f"  Non-media references:")
+                report.append(f"    - Messages with non-media refs: {ref_stats.get('messages_with_non_media_references', 0)}")
+                report.append(f"    - Unique Telegram channels mentioned: {ref_stats.get('unique_telegram_channels_mentioned', 0)}")
+                if ref_stats.get('reference_category_counts'):
+                    report.append(f"    - Reference categories:")
+                    for category, count in ref_stats['reference_category_counts'].items():
+                        report.append(f"      • {category}: {count}")
+
         report.append("")
         report.append("=" * 80)
 

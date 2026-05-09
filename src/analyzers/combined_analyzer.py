@@ -6,6 +6,8 @@ from pathlib import Path
 from src.analyzers.link_detector import LinkDetector
 from src.analyzers.mention_detector import MentionDetector
 from src.analyzers.similarity_detector import SimilarityDetector
+from src.analyzers.content_type_detector import ContentTypeDetector
+from src.analyzers.reference_detector import ReferenceDetector
 from src.utils.config import PROCESSED_DATA_DIR, RESULTS_DIR
 
 
@@ -17,6 +19,8 @@ class CombinedAnalyzer:
         self.link_detector = LinkDetector()
         self.mention_detector = MentionDetector()
         self.similarity_detector = SimilarityDetector()
+        self.content_type_detector = ContentTypeDetector()
+        self.reference_detector = ReferenceDetector()
 
     def analyze_channel(
         self, telegram_messages: List[Dict], media_articles: List[Dict], channel_name: str
@@ -66,19 +70,37 @@ class CombinedAnalyzer:
         similarity_stats = self.similarity_detector.get_statistics(messages_with_similarity)
         print(f"   Found {similarity_stats['messages_with_similar_content']} messages with similar content")
 
-        # Combine all results
-        all_analyzed = self._combine_results(
+        # Combine similarity results
+        messages_combined = self._combine_results(
             messages_with_mentions, messages_with_similarity
         )
 
+        # Step 4: Detect content types
+        print("\n4. Detecting content types (news, memes, official sources)...")
+        messages_with_content_types = self.content_type_detector.analyze_messages(messages_combined)
+        content_type_stats = self.content_type_detector.get_statistics(messages_with_content_types)
+        print(f"   Content type distribution:")
+        for ct, pct in content_type_stats['content_type_percentages'].items():
+            if pct > 0:
+                print(f"     - {ct}: {pct:.1f}%")
+
+        # Step 5: Detect non-media references
+        print("\n5. Detecting non-media references...")
+        messages_with_references = self.reference_detector.analyze_messages(messages_with_content_types)
+        reference_stats = self.reference_detector.get_statistics(messages_with_references)
+        print(f"   Found {reference_stats['messages_with_non_media_references']} messages with non-media references")
+        if reference_stats['unique_telegram_channels_mentioned'] > 0:
+            print(f"   Mentioned {reference_stats['unique_telegram_channels_mentioned']} unique Telegram channels")
+
         # Calculate overall statistics
         overall_stats = self._calculate_overall_stats(
-            all_analyzed, link_stats, mention_stats, similarity_stats
+            messages_with_references, link_stats, mention_stats, similarity_stats,
+            content_type_stats, reference_stats
         )
 
         return {
             "channel_name": channel_name,
-            "messages": all_analyzed,
+            "messages": messages_with_references,
             "statistics": overall_stats,
         }
 
@@ -106,6 +128,8 @@ class CombinedAnalyzer:
         link_stats: Dict,
         mention_stats: Dict,
         similarity_stats: Dict,
+        content_type_stats: Dict = None,
+        reference_stats: Dict = None,
     ) -> Dict:
         """Calculate overall statistics across all detection methods."""
         total = len(all_messages)
@@ -137,7 +161,7 @@ class CombinedAnalyzer:
                 else:
                     multiple_methods += 1
 
-        return {
+        stats = {
             "total_messages": total,
             "influenced_by_media": influenced_count,
             "percentage_influenced": (influenced_count / total * 100) if total > 0 else 0,
@@ -153,6 +177,16 @@ class CombinedAnalyzer:
                 "similarity": similarity_stats,
             },
         }
+
+        # Add content type stats if available
+        if content_type_stats:
+            stats["content_types"] = content_type_stats
+
+        # Add reference stats if available
+        if reference_stats:
+            stats["references"] = reference_stats
+
+        return stats
 
     def save_results(self, results: Dict, output_file: Path):
         """Save analysis results to file."""

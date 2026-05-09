@@ -8,7 +8,9 @@ from pathlib import Path
 from src.scrapers.telegram_scraper import TelegramScraper
 from src.scrapers.media_scraper import MediaScraper
 from src.analyzers.combined_analyzer import CombinedAnalyzer
+from src.analyzers.bidirectional_influence import BidirectionalInfluenceAnalyzer
 from src.processors.report_generator import ReportGenerator
+from src.processors.interactive_visualizations import InteractiveVisualizer
 from src.utils.config import (
     RAW_DATA_DIR,
     PROCESSED_DATA_DIR,
@@ -148,6 +150,10 @@ def analyze_data():
             print(f"\nSkipping {name} - no messages")
             continue
 
+        # Add channel name to each message for later analysis
+        for msg in messages:
+            msg['channel_name'] = name
+
         # Analyze channel
         results = analyzer.analyze_channel(messages, media_articles, name)
         all_results[name] = results
@@ -157,17 +163,42 @@ def analyze_data():
         output_file = RESULTS_DIR / f"analysis_{safe_name}.json"
         analyzer.save_results(results, output_file)
 
-    # Save combined results
+    # Perform bidirectional influence analysis
+    print("\n" + "=" * 80)
+    print("BIDIRECTIONAL INFLUENCE ANALYSIS")
+    print("=" * 80)
+
+    # Collect all analyzed messages
+    all_analyzed_messages = []
+    for results in all_results.values():
+        all_analyzed_messages.extend(results['messages'])
+
+    bidirectional_analyzer = BidirectionalInfluenceAnalyzer()
+    bidirectional_results = bidirectional_analyzer.generate_full_analysis(
+        all_analyzed_messages, media_articles
+    )
+
+    # Save bidirectional analysis results
+    bidirectional_file = RESULTS_DIR / "bidirectional_influence.json"
+    with open(bidirectional_file, "w", encoding="utf-8") as f:
+        json.dump(bidirectional_results, f, ensure_ascii=False, indent=2, default=str)
+    print(f"\nBidirectional analysis saved to: {bidirectional_file}")
+
+    # Save combined results with bidirectional data
+    combined_data = {
+        "channel_results": all_results,
+        "bidirectional_influence": bidirectional_results
+    }
     combined_file = RESULTS_DIR / "analysis_all_channels.json"
     with open(combined_file, "w", encoding="utf-8") as f:
-        json.dump(all_results, f, ensure_ascii=False, indent=2)
+        json.dump(combined_data, f, ensure_ascii=False, indent=2, default=str)
     print(f"\nCombined results saved to: {combined_file}")
 
     print("\n" + "=" * 80)
     print("ANALYSIS COMPLETE")
     print("=" * 80)
 
-    return all_results
+    return all_results, bidirectional_results
 
 
 def generate_report():
@@ -183,11 +214,27 @@ def generate_report():
         sys.exit(1)
 
     with open(results_file, "r", encoding="utf-8") as f:
-        all_results = json.load(f)
+        combined_data = json.load(f)
+
+    # Handle both old and new format
+    if "channel_results" in combined_data:
+        all_results = combined_data["channel_results"]
+        bidirectional_results = combined_data.get("bidirectional_influence")
+    else:
+        all_results = combined_data
+        bidirectional_results = None
 
     # Generate report
     report_gen = ReportGenerator()
     report_gen.generate_full_report(all_results)
+
+    # Generate interactive visualizations
+    print("\n" + "=" * 80)
+    print("INTERACTIVE VISUALIZATIONS")
+    print("=" * 80)
+
+    visualizer = InteractiveVisualizer()
+    visualizer.save_all_visualizations(all_results, bidirectional_results)
 
 
 def main():

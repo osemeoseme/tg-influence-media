@@ -18,7 +18,8 @@ class MentionDetector:
 
     def _create_patterns(self) -> Dict[str, List[str]]:
         """
-        Create regex patterns for each media source.
+        Create regex patterns for each media source with word boundaries.
+        Supports case-insensitive matching and partial name matching.
 
         Returns:
             Dictionary mapping media names to their patterns
@@ -29,15 +30,22 @@ class MentionDetector:
             name = source["name"]
             source_patterns = []
 
-            # Add exact name pattern
-            source_patterns.append(re.escape(name))
+            # Add exact name pattern with word boundaries (case-insensitive)
+            source_patterns.append(rf'\b{re.escape(name)}\b')
 
-            # Add domain-based patterns
+            # For multi-word names, also match first significant word
+            if ' ' in name:
+                first_part = name.split()[0]
+                # Only add if the first part is substantial (more than 2 characters)
+                if len(first_part) > 2:
+                    source_patterns.append(rf'\b{re.escape(first_part)}\b')
+
+            # Add domain-based patterns with word boundaries
             for domain in source.get("domains", []):
                 # Remove TLD for matching
                 domain_name = domain.split(".")[0]
                 if domain_name not in name.lower():
-                    source_patterns.append(re.escape(domain_name))
+                    source_patterns.append(rf'\b{re.escape(domain_name)}\b')
 
             patterns[name] = source_patterns
 
