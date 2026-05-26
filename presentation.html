@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Influence Analysis on Telegram Channels</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/white.min.css">
+    <style>
+        .reveal h1, .reveal h2, .reveal h3 {
+            text-transform: none;
+            color: #2c3e50;
+        }
+        .reveal h1 { font-size: 2.2em; margin-bottom: 20px; }
+        .reveal h2 { font-size: 1.6em; margin-bottom: 15px; }
+        .reveal h3 { font-size: 1.2em; margin-bottom: 10px; margin-top: 15px; }
+        .reveal .slides section {
+            text-align: left;
+            overflow-y: auto;
+        }
+        .reveal {
+            font-size: 32px;
+        }
+        .reveal .title-slide {
+            text-align: center;
+        }
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .method-box {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .method-box p {
+            margin: 5px 0;
+        }
+        .method-box h3 {
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+        .stats-box {
+            background: #3498db;
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 15px auto;
+            max-width: 600px;
+        }
+        .stats-number {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        .formula {
+            background: #f8f9fa;
+            padding: 12px;
+            border-left: 4px solid #3498db;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        ul {
+            margin-left: 25px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .reveal ul li {
+            margin-bottom: 8px;
+        }
+        .reveal p {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .small-text {
+            font-size: 0.7em;
+            margin-top: 10px;
+        }
+        .center-img {
+            display: block;
+            margin: 15px auto;
+            max-width: 95%;
+            max-height: 550px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+        .image-slide h2 {
+            margin-bottom: 5px;
+            margin-top: 5px;
+            font-size: 1.5em;
+        }
+        .image-slide .center-img {
+            max-height: 620px;
+            margin: 10px auto;
+        }
+        .image-slide .small-text {
+            margin-top: 5px;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Title Slide -->
+            <section class="title-slide">
+                <h1>Measuring Traditional Media Influence in Ukrainian Telegram News Channels</h1>
+                <p style="font-size: 0.7em; color: #666; margin-top: 20px; font-weight: 400;">
+                    A Multi-Method Approach Combining Rule-Based Detection and Semantic Similarity Analysis
+                </p>
+
+                <div style="margin-top: 60px;">
+                    <p style="font-size: 0.65em; color: #444;">
+                        <strong>Andrii Ianitskyi, Oleh Semeniuk</strong><br>
+                        Ukrainian Catholic University<br>
+                        <span style="font-size: 0.9em; color: #666;"></span>
+                    </p>
+                </div>
+
+                <div style="margin-top: 60px; padding: 30px; background: #ecf0f1; border-radius: 15px; display: inline-block; min-width: 900px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 35px; text-align: center;">
+                        <div>
+                            <div style="font-size: 2.5em; font-weight: bold; color: #3498db;">1M+</div>
+                            <div style="font-size: 0.65em; color: #666; margin-top: 8px;">Messages Analyzed</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2.5em; font-weight: bold; color: #3498db;">13</div>
+                            <div style="font-size: 0.65em; color: #666; margin-top: 8px;">Telegram Channels</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2.5em; font-weight: bold; color: #3498db;">20+</div>
+                            <div style="font-size: 0.65em; color: #666; margin-top: 8px;">Media Outlets</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2.5em; font-weight: bold; color: #3498db;">6 years</div>
+                            <div style="font-size: 0.65em; color: #666; margin-top: 8px;">Analysis Period</div>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="font-size: 0.55em; color: #999; margin-top: 40px;">
+                </p>
+            </section>
+
+            <!-- Overview -->
+            <section>
+                <h2>Project Overview</h2>
+                <div class="method-box">
+                    <h3>Research Question</h3>
+                    <p>How much influence do traditional Ukrainian media sources have on Telegram news channels?</p>
+                </div>
+                <div class="two-column" style="margin-top: 15px;">
+                    <div>
+                        <h3>Data Sources</h3>
+                        <ul>
+                            <li>13 Telegram channels</li>
+                            <li>20+ media outlets</li>
+                            <li>1M+ messages analyzed</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Detection Methods</h3>
+                        <ul>
+                            <li>Direct link detection</li>
+                            <li>Media mention detection</li>
+                            <li>Semantic similarity (ML)</li>
+                            <li>Content classification</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Methodology Section -->
+            <section>
+                <section>
+                    <h2>Methodology</h2>
+                    <p>Multi-method approach to detect media influence</p>
+                </section>
+
+                <!-- Data Collection -->
+                <section>
+                    <h2>1. Data Collection</h2>
+                    <div class="two-column">
+                        <div>
+                            <h3>Telegram Data</h3>
+                            <ul>
+                                <li><strong>Source:</strong> Telethon API</li>
+                                <li><strong>Period:</strong> 6 years (2020-2026)</li>
+                                <li><strong>Channels:</strong> Major Ukrainian news channels</li>
+                                <li><strong>Data:</strong> Text, links, timestamps, metadata</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Media Articles</h3>
+                            <ul>
+                                <li><strong>Sources:</strong> Top 20+ Ukrainian media outlets</li>
+                                <li><strong>Collection:</strong> RSS feeds, web scraping</li>
+                                <li><strong>Data:</strong> Headlines, full text, publish dates</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="method-box" style="margin-top: 15px;">
+                        <strong>Key Parameters:</strong><br>
+                        Time Window: 48 hours | Max Messages per Channel: 10,000
+                    </div>
+                </section>
+
+                <!-- Method 1: Link Detection -->
+                <section>
+                    <h2>2. Direct Link Detection</h2>
+                    <div class="method-box">
+                        <p><strong>Approach:</strong> Pattern matching to identify URLs to traditional media sources</p>
+                    </div>
+                    <h3>Implementation</h3>
+                    <ul>
+                        <li>Extract all URLs from Telegram messages</li>
+                        <li>Match against whitelist of 100+ media domains</li>
+                        <li>Track specific media source and article</li>
+                    </ul>
+                    <div class="formula">
+                        <strong>Example domains:</strong><br>
+                        pravda.com.ua, tsn.ua, suspilne.media, bbc.com, reuters.com
+                    </div>
+                    <p class="small-text"><em>This is the most explicit form of media influence - direct citation of sources</em></p>
+                </section>
+
+                <!-- Method 2: Mention Detection -->
+                <section>
+                    <h2>3. Media Mention Detection</h2>
+                    <div class="method-box">
+                        <p><strong>Approach:</strong> Text analysis to find references to media outlets</p>
+                    </div>
+                    <h3>Implementation</h3>
+                    <ul>
+                        <li>Pattern matching for media names in text</li>
+                        <li>Multi-language support (Ukrainian, Russian, English)</li>
+                        <li>Handles various citation formats</li>
+                    </ul>
+                    <div class="formula">
+                        <strong>Example patterns:</strong><br>
+                        "Українська правда пише"<br>
+                        "за даними BBC"<br>
+                        "як повідомляє Reuters"
+                    </div>
+                </section>
+
+                <!-- Method 3: Cosine Similarity -->
+                <section>
+                    <h2>4. Semantic Similarity (ML)</h2>
+                    <div class="method-box">
+                        <p><strong>Approach:</strong> Machine learning to detect rephrased/republished content</p>
+                    </div>
+                    <h3>Key Technique: Cosine Similarity</h3>
+                    <div class="formula" style="padding: 10px; margin: 8px 0;">
+                        similarity = (A · B) / (||A|| × ||B||)<br>
+                        Where A and B are sentence embeddings | Score: 0 (different) to 1 (identical)
+                    </div>
+                    <h3>Implementation Details</h3>
+                    <ul style="margin-top: 8px;">
+                        <li><strong>Model:</strong> paraphrase-multilingual-MiniLM-L12-v2</li>
+                        <li><strong>Threshold:</strong> 0.75 similarity score</li>
+                        <li><strong>Time Window:</strong> 48 hours after article publication</li>
+                        <li><strong>Min Text Length:</strong> 50 characters</li>
+                    </ul>
+                </section>
+
+                <!-- Cosine Similarity Explained -->
+                <section>
+                    <h2>How Cosine Similarity Works</h2>
+                    <div class="two-column">
+                        <div>
+                            <h3>Step 1: Encoding</h3>
+                            <p>Text is converted to numerical vectors (embeddings) using a neural network trained on multilingual data</p>
+                            <div class="formula">
+                                "Війна в Україні" → [0.23, 0.45, -0.12, ...]
+                            </div>
+                        </div>
+                        <div>
+                            <h3>Step 2: Comparison</h3>
+                            <p>Cosine of the angle between vectors measures semantic similarity</p>
+                            <div class="formula">
+                                Similar meaning = small angle<br>
+                                Different meaning = large angle
+                            </div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 15px;"><strong>Advantage:</strong> Detects paraphrased content that doesn't share exact words</p>
+
+                    <div style="margin-top: 20px; padding: 15px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 5px; font-size: 0.85em;">
+                        <strong>Why Cosine over Euclidean/Manhattan?</strong><br>
+                        Distance metrics (Euclidean, Manhattan) are sensitive to text length — longer messages get larger distances even with same meaning.
+                        Cosine measures <strong>direction (meaning)</strong>, not magnitude (length), making it ideal for comparing texts of different sizes.
+                        <br><br>
+                        <em>Example:</em> "Війна" vs "Війна в Україні продовжується" have same topic but Euclidean says "different" (large distance).
+                        Cosine correctly says "similar" (same direction).
+                    </div>
+                </section>
+
+                <!-- Model Selection -->
+                <section>
+                    <h2>Why This Model?</h2>
+                    <h3 style="margin-bottom: 20px;">Alternative Approaches Considered</h3>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px;">
+                        <div class="method-box" style="background: #fff3cd;">
+                            <strong>❌ TF-IDF / Classical Methods</strong>
+                            <p style="font-size: 0.85em; margin-top: 8px;">Fast but only matches exact words<br>Misses semantic paraphrasing</p>
+                        </div>
+                        <div class="method-box" style="background: #fff3cd;">
+                            <strong>❌ Ukrainian BERT</strong>
+                            <p style="font-size: 0.85em; margin-top: 8px;">Better for Ukrainian only<br>No Russian/English support</p>
+                        </div>
+                        <div class="method-box" style="background: #fff3cd;">
+                            <strong>❌ Larger Models (MPNet)</strong>
+                            <p style="font-size: 0.85em; margin-top: 8px;">More accurate but 2-3× slower<br>Impractical for 1M+ messages</p>
+                        </div>
+                        <div class="method-box" style="background: #fff3cd;">
+                            <strong>❌ OpenAI Embeddings</strong>
+                            <p style="font-size: 0.85em; margin-top: 8px;">Expensive ($50-100+ for dataset)<br>API dependency, privacy concerns</p>
+                        </div>
+                    </div>
+
+                    <div class="method-box" style="background: #d4edda; padding: 15px;">
+                        <h3 style="margin-top: 0;">✅ paraphrase-multilingual-MiniLM-L12-v2</h3>
+                        <div class="two-column" style="margin-top: 12px;">
+                            <div>
+                                <ul style="font-size: 0.9em;">
+                                    <li><strong>Paraphrase-specific:</strong> Trained for this exact task</li>
+                                    <li><strong>Multilingual:</strong> Ukrainian + Russian + English</li>
+                                    <li><strong>Fast:</strong> Distilled model (384d vs 768d)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <ul style="font-size: 0.9em;">
+                                    <li><strong>Efficient:</strong> 95% accuracy at 50% cost</li>
+                                    <li><strong>Production-ready:</strong> ~1000 msg/sec on CPU</li>
+                                    <li><strong>Free & open-source:</strong> No API costs</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="small-text" style="margin-top: 15px; text-align: center;">
+                        <em>Optimal balance of accuracy, speed, and multilingual support for large-scale analysis</em>
+                    </p>
+                </section>
+
+                <!-- How the Model Works -->
+                <section>
+                    <h2>How the Model Works (Under the Hood)</h2>
+
+                    <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 20px;">
+
+                        <!-- Step 1 -->
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="background: #007bff; color: white; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">1</div>
+                            <div class="method-box" style="flex: 1; padding: 10px; margin: 0;">
+                                <strong>Tokenization:</strong> "Росія атакувала Київ" → ["Рос", "##ія", "атаку", "##вала", "Ки", "##їв"]
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="background: #007bff; color: white; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">2</div>
+                            <div class="method-box" style="flex: 1; padding: 10px; margin: 0;">
+                                <strong>Convert to Numbers:</strong> Each token gets a unique ID → [5432, 8721, 3456, ...]
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="background: #007bff; color: white; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">3</div>
+                            <div class="method-box" style="flex: 1; padding: 10px; margin: 0;">
+                                <strong>12 Neural Network Layers:</strong> Each layer understands text deeper (patterns → grammar → meaning)
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="background: #007bff; color: white; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">4</div>
+                            <div class="method-box" style="flex: 1; padding: 10px; margin: 0;">
+                                <strong>Create Embedding:</strong> Combine all word meanings → single vector of 384 numbers
+                            </div>
+                        </div>
+
+                        <!-- Step 5 -->
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="background: #007bff; color: white; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">5</div>
+                            <div class="method-box" style="flex: 1; padding: 10px; margin: 0;">
+                                <strong>Normalize:</strong> Scale the vector for fair comparison (like adjusting volume)
+                            </div>
+                        </div>
+
+                        <!-- Step 6 -->
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="background: #28a745; color: white; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">6</div>
+                            <div class="method-box" style="flex: 1; padding: 10px; margin: 0; background: #d4edda;">
+                                <strong>Compare with Cosine Similarity:</strong> Measure angle between two embeddings → Score 0.75+ = similar
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div style="margin-top: 25px; padding: 15px; background: #e7f3ff; border-left: 4px solid #007bff; border-radius: 5px;">
+                        <strong>Key Insight:</strong> The model converts sentences to "meaning fingerprints" (384 numbers).
+                        Paraphrases get similar fingerprints even in different languages or with different words.
+                    </div>
+                </section>
+
+                <!-- Model Architecture & Training -->
+                <section>
+                    <h2>Model Architecture & Training</h2>
+
+                    <div class="two-column" style="margin-top: 15px;">
+                        <div>
+                            <h3>Architecture</h3>
+                            <div class="method-box" style="font-size: 0.85em;">
+                                <strong>Base:</strong> Transformer (BERT-like)<br>
+                                <strong>Layers:</strong> 12 encoder layers<br>
+                                <strong>Hidden size:</strong> 384 dimensions<br>
+                                <strong>Parameters:</strong> ~33 million<br>
+                                <strong>Attention heads:</strong> 12<br>
+                                <strong>Pooling:</strong> Mean pooling
+                            </div>
+                            <h3 style="margin-top: 15px;">Why It's Fast</h3>
+                            <div class="method-box" style="font-size: 0.85em;">
+                                <strong>Knowledge Distillation:</strong><br>
+                                Teacher model (768d) trains student (384d)<br>
+                                Student learns to mimic teacher's outputs<br>
+                                → 50% size, 95% accuracy, 2× speed
+                            </div>
+                        </div>
+                        <div>
+                            <h3>Training Process (3 Stages)</h3>
+                            <div style="font-size: 0.8em;">
+                                <div class="method-box" style="margin-bottom: 10px; padding: 10px;">
+                                    <strong>1. Pre-training</strong><br>
+                                    Multilingual corpus (Wikipedia, etc.)<br>
+                                    Task: Predict masked words<br>
+                                    Learns: Grammar, context, word meanings
+                                </div>
+                                <div class="method-box" style="margin-bottom: 10px; padding: 10px;">
+                                    <strong>2. Fine-tuning for Paraphrases</strong><br>
+                                    1M+ paraphrase pairs (AllNLI, STS)<br>
+                                    Task: Contrastive learning<br>
+                                    Learns: Similar meanings → close embeddings
+                                </div>
+                                <div class="method-box" style="padding: 10px;">
+                                    <strong>3. Distillation</strong><br>
+                                    Compress from teacher (768d) to student (384d)<br>
+                                    Maintains performance, doubles speed
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Self-Attention Mechanism -->
+                <section>
+                    <h2>Self-Attention: The Core Mechanism</h2>
+
+                    <div class="method-box" style="margin-top: 15px;">
+                        <p><strong>Goal:</strong> Each word understands its context by "looking at" all other words</p>
+                    </div>
+
+                    <h3>Example: "Russia attacked Kyiv at night"</h3>
+
+                    <div style="margin-top: 20px;">
+                        <div class="formula" style="font-size: 0.85em;">
+                            For word <strong>"attacked"</strong>:<br><br>
+                            <strong>Query (Q):</strong> What information do I need? (attack context)<br>
+                            <strong>Key (K):</strong> What can other words offer?<br>
+                            <strong>Value (V):</strong> Actual information from other words<br><br>
+                            Attention Score = softmax(Q · K / √dimension)
+                        </div>
+                    </div>
+
+                    <div class="two-column" style="margin-top: 20px; font-size: 0.85em;">
+                        <div>
+                            <h3>Attention Weights for "attacked"</h3>
+                            <ul>
+                                <li><strong>Russia:</strong> 0.45 (high - who did it?)</li>
+                                <li><strong>attacked:</strong> 0.10</li>
+                                <li><strong>Kyiv:</strong> 0.35 (high - what was attacked?)</li>
+                                <li><strong>at:</strong> 0.02</li>
+                                <li><strong>night:</strong> 0.08</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Result</h3>
+                            <p>Embedding of "attacked" becomes:</p>
+                            <div class="formula">
+                                0.45 × V(Russia)<br>
+                                + 0.35 × V(Kyiv)<br>
+                                + 0.10 × V(attacked)<br>
+                                + 0.08 × V(night)<br>
+                                + 0.02 × V(at)
+                            </div>
+                            <p style="margin-top: 10px;"><strong>Now "attacked" knows WHO attacked WHAT!</strong></p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Why It Works for Paraphrasing -->
+                <section>
+                    <h2>Why It Detects Paraphrases</h2>
+
+                    <div class="formula" style="margin-top: 10px; margin-bottom: 8px; font-size: 0.85em; padding: 8px;">
+                        <strong>Text A:</strong> "Росія атакувала Київ" | <strong>Text B:</strong> "Кремль напав на столицю"
+                    </div>
+
+                    <h3 style="margin-top: 10px; margin-bottom: 10px; font-size: 1.1em;">How the Model Processes This</h3>
+
+                    <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px; font-size: 0.85em;">
+                        <div class="method-box" style="padding: 8px; margin: 0;">
+                            <strong>Layers 1-3 (Surface):</strong> "Росія"/"Кремль" are entities • "атакувала"/"напав" are verbs
+                        </div>
+
+                        <div class="method-box" style="padding: 8px; margin: 0;">
+                            <strong>Layers 4-8 (Syntax):</strong> Subject-Verb-Object structure • [AGENT] [ACTION] [LOCATION]
+                        </div>
+
+                        <div class="method-box" style="background: #d4edda; padding: 8px; margin: 0;">
+                            <strong>Layers 9-12 (Semantics):</strong> [RUSSIA attacks UKRAINE-CAPITAL] • Similar semantic space → <strong>Cosine similarity ~0.85+</strong>
+                        </div>
+                    </div>
+
+                    <div class="formula" style="margin-top: 12px; font-size: 0.8em; padding: 8px;">
+                        <strong>Final Embeddings:</strong><br>
+                        A: [0.23, -0.45, 0.67, 0.12, -0.89, ...] • B: [0.25, -0.43, 0.65, 0.15, -0.87, ...] (384 numbers each)<br>
+                        <strong style="color: #28a745;">→ Cosine Similarity = 0.87 = Same meaning detected!</strong>
+                    </div>
+                </section>
+
+                <!-- Content Classification -->
+                <section>
+                    <h2>5. Content Type Detection</h2>
+                    <div class="method-box">
+                        <p><strong>Approach:</strong> Classify messages by content type</p>
+                    </div>
+                    <h3>Content Categories</h3>
+                    <div class="two-column">
+                        <div>
+                            <ul>
+                                <li><strong>News:</strong> Traditional news content</li>
+                                <li><strong>Social Media:</strong> References to social platforms</li>
+                                <li><strong>Telegram Channels:</strong> Cross-references</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul>
+                                <li><strong>Official Sources:</strong> Government, institutions</li>
+                                <li><strong>Memes/Jokes:</strong> Emoji-heavy, informal</li>
+                                <li><strong>Opinion:</strong> Commentary, analysis</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p style="margin-top: 15px;"><em>Helps understand the nature of media influence beyond simple counts</em></p>
+                </section>
+
+                <!-- Reference Detection -->
+                <section>
+                    <h2>6. Non-Media Reference Detection</h2>
+                    <div class="method-box">
+                        <p><strong>Approach:</strong> Track all external references to understand the information ecosystem</p>
+                    </div>
+                    <h3>Reference Categories</h3>
+                    <ul>
+                        <li>Other Telegram channels (t.me links)</li>
+                        <li>Social media (Facebook, Twitter, Instagram, TikTok)</li>
+                        <li>YouTube videos</li>
+                        <li>Government websites</li>
+                        <li>International media</li>
+                    </ul>
+                    <p style="margin-top: 20px;"><strong>Insight:</strong> Shows whether channels rely more on traditional media or alternative sources</p>
+                </section>
+            </section>
+
+            <!-- Results Section -->
+            <section>
+                <section>
+                    <h2>Results</h2>
+                    <p>Key findings from the analysis</p>
+                </section>
+
+                <!-- Overall Statistics -->
+                <section>
+                    <h2>Overall Statistics</h2>
+                    <div class="stats-box">
+                        <div class="stats-number">41.87%</div>
+                        <p>of all messages showed media influence</p>
+                    </div>
+                    <div class="two-column">
+                        <div class="method-box">
+                            <h3>Messages Analyzed</h3>
+                            <p style="font-size: 2em; text-align: center;">1,023,835</p>
+                        </div>
+                        <div class="method-box">
+                            <h3>Influenced Messages</h3>
+                            <p style="font-size: 2em; text-align: center;">428,640</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Message Volume Timeline -->
+                <section class="image-slide">
+                    <h2>Message Volume Over Time</h2>
+                    <img src="data/results/temporal/message_volume_timeline.png" class="center-img" alt="Message Volume Timeline">
+                    <p class="small-text" style="text-align: center;">
+                        Peak activity in <span class="highlight">March 2022</span> (invasion onset), sustained high volume throughout the war
+                    </p>
+                </section>
+
+                <!-- Detection Methods Breakdown -->
+                <section class="image-slide">
+                    <h2>Detection Methods Breakdown</h2>
+                    <img src="data/results/influence_by_method.png" class="center-img" alt="Influence by Method">
+                    <div class="method-box" style="margin-top: 10px; padding: 12px;">
+                        <p style="font-size: 0.7em; margin: 0;">
+                            <strong>Independent Channels</strong> (bottom): 20-53% show traditional media influence<br>
+                            <strong>Traditional Media Channels</strong> (top): 77-79% cite their own content - expected behavior
+                        </p>
+                        <p class="small-text" style="margin-top: 8px; font-style: italic;">
+                            Note: Most influence detected through <span class="highlight">media mentions</span> and <span class="highlight">semantic similarity</span>, not direct links
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Media Influence by Channel -->
+                <section class="image-slide">
+                    <h2>Media Influence by Channel</h2>
+                    <img src="data/results/analysis_visualizations.png" class="center-img" alt="Analysis Visualizations">
+                </section>
+
+                <!-- Content Type Distribution -->
+                <section class="image-slide">
+                    <h2>Content Type Distribution</h2>
+                    <img src="data/results/content_type_heatmap.png" class="center-img" alt="Content Type Heatmap">
+                    <p class="small-text" style="text-align: center;">
+                        Shows how different channels use different types of content
+                    </p>
+                </section>
+
+                <!-- Top Referenced Sources -->
+                <section class="image-slide">
+                    <h2>Top Referenced Telegram Channels</h2>
+                    <img src="data/results/top_telegram_channels.png" class="center-img" alt="Top Telegram Channels">
+                </section>
+
+                <!-- Reference Categories -->
+                <section class="image-slide">
+                    <h2>Reference Categories</h2>
+                    <img src="data/results/reference_categories.png" class="center-img" alt="Reference Categories">
+                    <div class="method-box" style="margin-top: 10px; padding: 12px;">
+                        <p style="font-size: 0.75em; margin: 0;"><strong>Key distinction:</strong></p>
+                        <p style="font-size: 0.7em; margin: 5px 0 0 0;">
+                            • <strong>40% of messages</strong> contain at least one traditional media reference<br>
+                            • <strong>22.3% of all URLs</strong> point to traditional media (messages often cite multiple sources)<br>
+                            • Total: ~1.9M individual citations across all messages
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Media vs Non-Media -->
+                <section class="image-slide">
+                    <h2>Media vs Non-Media References</h2>
+                    <img src="data/results/media_vs_nonmedia.png" class="center-img" alt="Media vs Non-Media">
+                </section>
+
+                <!-- Activity Heatmap -->
+                <section class="image-slide">
+                    <h2>Channel Activity Patterns</h2>
+                    <img src="data/results/temporal/activity_heatmap.png" class="center-img" alt="Activity Heatmap">
+                </section>
+            </section>
+
+            <!-- Key Findings -->
+            <section>
+                <h2>Key Findings</h2>
+                <div class="method-box">
+                    <h3>1. Significant Media Influence</h3>
+                    <p>Over <span class="highlight">40% of messages</span> reference or are influenced by traditional media sources</p>
+                    <p class="small-text" style="font-style: italic; color: #666;">Note: This counts messages containing at least one traditional media reference. When counting individual URLs, traditional media represents ~22% of all citations (messages often cite multiple sources).</p>
+                </div>
+                <div class="method-box">
+                    <h3>2. Multiple Detection Methods</h3>
+                    <p>Most influence detected through <strong>mentions</strong> (implicit citations) rather than direct links</p>
+                </div>
+                <div class="method-box">
+                    <h3>3. Semantic Similarity</h3>
+                    <p>ML-based detection found substantial <strong>content republishing</strong> without attribution</p>
+                </div>
+                <div class="method-box">
+                    <h3>4. Hybrid Ecosystem</h3>
+                    <p>Channels reference both traditional media and other Telegram channels, creating a <strong>multi-source ecosystem</strong></p>
+                </div>
+            </section>
+
+            <!-- Conclusions -->
+            <section>
+                <h2>Conclusions</h2>
+                <h3>Main Takeaways</h3>
+                <ul>
+                    <li><strong>Traditional media remains influential</strong> in the Ukrainian Telegram news ecosystem (42% influence rate)</li>
+                    <li><strong>Semantic similarity detection</strong> reveals hidden influence that simple link/mention analysis misses</li>
+                    <li><strong>Multi-method approach</strong> essential for comprehensive media influence analysis</li>
+                    <li><strong>Content type matters:</strong> News content shows higher media influence than opinion/commentary</li>
+                </ul>
+                <div class="method-box" style="margin-top: 20px;">
+                    <h3>Technical Contribution</h3>
+                    <p>Demonstrates the effectiveness of combining <strong>rule-based detection</strong> (links, mentions) with <strong>ML-based semantic analysis</strong> (cosine similarity) for media influence measurement</p>
+                </div>
+            </section>
+
+            <!-- Technical Stack -->
+            <section>
+                <h2>Technical Implementation</h2>
+                <div class="two-column">
+                    <div>
+                        <h3>Technologies Used</h3>
+                        <ul>
+                            <li>Python 3.14</li>
+                            <li>Telethon (Telegram API)</li>
+                            <li>Sentence Transformers</li>
+                            <li>Beautiful Soup (scraping)</li>
+                            <li>Pandas, NumPy</li>
+                            <li>Matplotlib, Seaborn, Plotly</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Key Parameters</h3>
+                        <ul>
+                            <li>Similarity threshold: 0.75</li>
+                            <li>Time window: 48 hours</li>
+                            <li>Analysis period: 3 months</li>
+                            <li>Min text length: 50 chars</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Thank You -->
+            <section class="title-slide">
+                <h1>Thank You</h1>
+                <h3>Questions?</h3>
+                <p style="margin-top: 25px;">
+                    <strong>Dataset:</strong> 1M+ Telegram messages<br>
+                    <strong>Analysis:</strong> Multi-method media influence detection<br>
+                    <strong>Results:</strong> 41.87% media influence rate
+                </p>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            controls: true,
+            progress: true,
+            center: false,
+            slideNumber: true,
+            width: 1280,
+            height: 900,
+            margin: 0.02,
+            minScale: 0.2,
+            maxScale: 2.0,
+        });
+    </script>
+</body>
+</html>

@@ -26,9 +26,10 @@ The project demonstrates that **traditional media still plays a crucial role** i
 
 ### Data Sources
 
-- **13 popular Telegram channels** (like Труха Україна, ТСН Новини, etc.)
-- **17 traditional media outlets** (like Українська правда, Babel, Суспільне, etc.)
-- **3 months** of historical data
+- **13 popular Telegram channels** (like Труха Україна, ТСН Новини, Суспільне Новини, etc.) 
+  - Note: 4 are traditional media's own Telegram accounts, 9 are independent channels
+- **142 traditional media outlets** (18 national, 124 regional - like Українська правда, Babel, Суспільне, etc.)
+- **48 hours** of recent data (max 10,000 messages per channel)
 
 ### Technology Stack
 
@@ -106,22 +107,35 @@ This will:
 
 ### View Results
 
-Check `data/results/` for:
+**Presentations:**
+- `presentation.html` - Interactive HTML presentation with all findings
+- `presentation_standalone.html` - Self-contained version (3MB, shareable)
+
+**Data folder** (`data/results/`):
 - `report.txt` - Summary statistics
 - `analysis_visualizations.png` - Charts
+- `reference_categories.png` - Citation type distribution  
+- `influence_by_method.png` - Detection methods (independent vs traditional media channels)
+- `temporal/` - Time-based visualizations
 - `summary.csv` - Per-channel breakdown
 - `detailed_messages.csv` - All analyzed messages
 
-## Example Results
+## Key Findings
 
-Based on the methodology, you might find:
+Based on analysis of 1M+ messages:
 
-- **40-60%** of Telegram messages influenced by traditional media
-- **10-15%** with direct links
-- **20-30%** with media mentions
-- **10-20%** with semantic similarity (rephrased)
+- **40% of messages** reference or are influenced by traditional media sources
+- **22.3% of all citations** (URLs) point to traditional media (messages often cite multiple sources)
+- **Independent channels**: 20-53% show traditional media influence
+- **Traditional media's own Telegram accounts**: 77-79% cite their own content (expected)
 
-Results vary by channel - some rely more heavily on traditional media than others.
+**Detection method breakdown:**
+- Most influence detected through **media mentions** (implicit citations) and **semantic similarity**
+- Direct links are less common than rephrased/mentioned content
+
+**Key insight:** Messages vs Citations distinction
+- A message counts once if it mentions traditional media (→ 40%)
+- But that same message may contain 3+ URLs to different sources (traditional media is 22% of all URLs)
 
 ## Key Features
 

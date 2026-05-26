@@ -123,6 +123,7 @@ class ContentTypeDetector:
         """
         text = message.get('text', '') or ''
         content_types = []
+        primary_source = None
 
         # Extract URLs
         urls = self.extract_urls(text)
@@ -132,14 +133,16 @@ class ContentTypeDetector:
         has_gov_source = len(gov_urls) > 0
         if has_gov_source:
             content_types.append('government_source')
+            primary_source = 'government_source'
 
         # Check for official channel keywords
         has_official_channel = any(
             pattern.search(text)
             for pattern in self.official_patterns
         )
-        if has_official_channel:
+        if has_official_channel and not primary_source:
             content_types.append('official_channel')
+            primary_source = 'official_channel'
 
         # Check for social media links
         social_urls = [
@@ -155,8 +158,8 @@ class ContentTypeDetector:
         if has_tg_channel_mention:
             content_types.append('telegram_channel')
 
-        # Default to news if no specific type detected
-        if not content_types:
+        # Add news as primary source if no other primary source detected
+        if not primary_source:
             content_types.append('news')
 
         return {

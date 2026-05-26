@@ -34,8 +34,8 @@ Uses NLP to detect rephrased or uncredited content by comparing message embeddin
 ## Data Sources
 
 - **Telegram Channels**: 13 popular Ukrainian news channels
-- **Traditional Media**: 17 Ukrainian media outlets
-- **Time Range**: Configurable (default: last 3 months)
+- **Traditional Media**: 142 Ukrainian media outlets (national and regional)
+- **Time Range**: Configurable (default: last 48 hours)
 
 All data sources are configurable in `config/` directory.
 
@@ -139,8 +139,15 @@ make explore  # Run exploratory analysis
 
 The analysis generates:
 
+- **Interactive Presentation**:
+  - `presentation.html`: Full presentation with charts (requires `data/results/` folder)
+  - `presentation_standalone.html`: Self-contained version with embedded images (3MB, shareable as single file)
 - **Text Report** (`data/results/report.txt`): Summary statistics
-- **Visualizations** (`data/results/analysis_visualizations.png`): Charts and graphs
+- **Visualizations**:
+  - `analysis_visualizations.png`: Channel-by-channel analysis
+  - `reference_categories.png`: Distribution of citation types
+  - `influence_by_method.png`: Detection method breakdown (separated independent vs traditional media channels)
+  - `temporal/`: Time-based visualizations
 - **CSV Files**:
   - `summary.csv`: Per-channel statistics
   - `detailed_messages.csv`: Message-level data

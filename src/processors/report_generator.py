@@ -120,21 +120,25 @@ class ReportGenerator:
         # 1. Bar chart: Percentage influenced by channel
         ax1 = axes[0, 0]
         df_sorted = df.sort_values("Percentage", ascending=True)
-        ax1.barh(df_sorted["Channel"], df_sorted["Percentage"], color='steelblue')
-        ax1.set_xlabel("Percentage (%)")
-        ax1.set_title("Media Influence by Channel")
+        ax1.barh(df_sorted["Channel"], df_sorted["Percentage"], color='steelblue', alpha=0.8)
+        ax1.set_xlabel("Percentage (%)", fontsize=11, fontweight='bold')
+        ax1.set_title("Media Influence by Channel", fontsize=13, fontweight='bold', pad=10)
         ax1.grid(axis='x', alpha=0.3)
+        ax1.set_xlim(0, max(100, df_sorted["Percentage"].max() * 1.1))
 
         # 2. Stacked bar chart: Total vs Influenced
         ax2 = axes[0, 1]
         df_sorted = df.sort_values("Influenced", ascending=True)
-        ax2.barh(df_sorted["Channel"], df_sorted["Total"],
-                label='Total Messages', color='lightgray', alpha=0.7)
-        ax2.barh(df_sorted["Channel"], df_sorted["Influenced"],
-                label='Influenced by Media', color='steelblue')
-        ax2.set_xlabel("Number of Messages")
-        ax2.set_title("Messages: Total vs Influenced")
-        ax2.legend()
+        x_pos = range(len(df_sorted))
+        ax2.barh(x_pos, df_sorted["Total"],
+                label='Total Messages', color='lightgray', alpha=0.6)
+        ax2.barh(x_pos, df_sorted["Influenced"],
+                label='Influenced by Media', color='steelblue', alpha=0.8)
+        ax2.set_yticks(x_pos)
+        ax2.set_yticklabels(df_sorted["Channel"], fontsize=9)
+        ax2.set_xlabel("Number of Messages", fontsize=11, fontweight='bold')
+        ax2.set_title("Messages: Total vs Influenced", fontsize=13, fontweight='bold', pad=10)
+        ax2.legend(fontsize=9)
         ax2.grid(axis='x', alpha=0.3)
 
         # 3. Detection method breakdown
@@ -151,12 +155,14 @@ class ReportGenerator:
             })
 
         df_breakdown = pd.DataFrame(breakdown_data)
-        df_breakdown.set_index("Channel").plot(kind='bar', stacked=True, ax=ax3,
-                                               color=['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728'])
-        ax3.set_title("Detection Method Breakdown by Channel")
-        ax3.set_ylabel("Number of Messages")
-        ax3.legend(title="Detection Method")
-        ax3.tick_params(axis='x', rotation=45)
+        df_breakdown = df_breakdown.sort_values(by=['Links', 'Mentions', 'Similarity', 'Multiple'], ascending=True)
+        df_breakdown.set_index("Channel").plot(kind='barh', stacked=True, ax=ax3,
+                                               color=['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728'],
+                                               alpha=0.8)
+        ax3.set_title("Detection Method Breakdown by Channel", fontsize=13, fontweight='bold', pad=10)
+        ax3.set_xlabel("Number of Messages", fontsize=11, fontweight='bold')
+        ax3.legend(title="Detection Method", fontsize=9, title_fontsize=9)
+        ax3.grid(axis='x', alpha=0.3)
 
         # 4. Overall pie chart
         ax4 = axes[1, 1]
@@ -164,12 +170,19 @@ class ReportGenerator:
         total_influenced = df["Influenced"].sum()
         total_not_influenced = total_messages - total_influenced
 
-        ax4.pie([total_influenced, total_not_influenced],
+        wedges, texts, autotexts = ax4.pie([total_influenced, total_not_influenced],
                labels=[f'Influenced by Media\n({total_influenced:,})',
                       f'Not Influenced\n({total_not_influenced:,})'],
                autopct='%1.1f%%', startangle=90,
-               colors=['steelblue', 'lightgray'])
-        ax4.set_title("Overall Media Influence Distribution")
+               colors=['steelblue', 'lightgray'],
+               explode=(0.05, 0))
+
+        for autotext in autotexts:
+            autotext.set_color('white')
+            autotext.set_fontweight('bold')
+            autotext.set_fontsize(11)
+
+        ax4.set_title("Overall Media Influence Distribution", fontsize=13, fontweight='bold', pad=10)
 
         plt.tight_layout()
 

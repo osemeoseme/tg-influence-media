@@ -36,6 +36,18 @@ class ReferenceDetector:
         'ssu.gov.ua': 'Government'
     }
 
+    # Traditional media Telegram channels
+    TRADITIONAL_MEDIA_TG_CHANNELS = {
+        'TCH_channel', 'UkrainaOnline', 'ukrpravda_news', 'uniannet',
+        'truexanews_admin', 'truexanewsua', 'UaOnlli', 'UA_TU',
+        'memorial_ukraine', 'kiev_info24_7', 'gmail', 'times_ukrain',
+        'truekha', 'UAonlli', 'kiev_info', 'insaider_zsu',
+        'UkraineNow', 'kyivindependent', 'suspilnenews', 'hromadskeua',
+        'radiosvoboda', 'bbcnews_ua', 'dw_ukrainian', 'currenttimeua',
+        'ukrinform_ua', 'ukrpravda', 'liga_net', 'nv_ua',
+        'korrespondent_net', 'segodnya_ua', 'censor_net'
+    }
+
     def extract_urls(self, text: str) -> List[str]:
         """
         Extract all URLs from text.
@@ -141,10 +153,22 @@ class ReferenceDetector:
                 urls_by_category[category] = []
             urls_by_category[category].append(url)
 
-        # Extract Telegram channels
+        # Extract Telegram channels and categorize them
         telegram_channels = self.extract_telegram_channels(text)
-        if telegram_channels:
-            reference_categories['Telegram Channels'] = len(telegram_channels)
+        media_tg_channels = []
+        non_media_tg_channels = []
+
+        for channel in telegram_channels:
+            if channel in self.TRADITIONAL_MEDIA_TG_CHANNELS:
+                media_tg_channels.append(channel)
+            else:
+                non_media_tg_channels.append(channel)
+
+        # Add to reference categories
+        if media_tg_channels:
+            reference_categories['Traditional Media (Telegram)'] = len(media_tg_channels)
+        if non_media_tg_channels:
+            reference_categories['Telegram Channels'] = len(non_media_tg_channels)
 
         # Determine if there are non-media references
         has_non_media_reference = len(reference_categories) > 0
@@ -153,6 +177,8 @@ class ReferenceDetector:
             'has_non_media_reference': has_non_media_reference,
             'reference_categories': reference_categories,
             'telegram_channels': telegram_channels,
+            'media_tg_channels': media_tg_channels,
+            'non_media_tg_channels': non_media_tg_channels,
             'urls_by_category': urls_by_category
         }
 

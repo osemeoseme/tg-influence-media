@@ -22,11 +22,33 @@ from src.utils.config import RESULTS_DIR
 class ExtendedVisualizer:
     """Create extended static visualizations for key insights."""
 
+    # Channels with insufficient data (redirects to private channels)
+    EXCLUDED_CHANNELS = [
+        'Україна 24/7 - новини',
+        'Інсайдер ЗСУ'
+    ]
+
     def __init__(self):
         """Initialize the extended visualizer."""
         sns.set_style("whitegrid")
         sns.set_palette("husl")
         self.output_dir = RESULTS_DIR
+
+    def _filter_channels(self, all_results: Dict) -> Dict:
+        """
+        Filter out channels with insufficient data.
+
+        Args:
+            all_results: Analysis results for all channels
+
+        Returns:
+            Filtered results dictionary
+        """
+        return {
+            channel_name: results
+            for channel_name, results in all_results.items()
+            if channel_name not in self.EXCLUDED_CHANNELS
+        }
 
     def create_content_type_heatmap(self, all_results: Dict):
         """
@@ -35,6 +57,9 @@ class ExtendedVisualizer:
         Args:
             all_results: Analysis results for all channels
         """
+        # Filter out excluded channels
+        all_results = self._filter_channels(all_results)
+
         # Prepare data
         channels = []
         content_types = set()
@@ -87,6 +112,9 @@ class ExtendedVisualizer:
         Args:
             all_results: Analysis results for all channels
         """
+        # Filter out excluded channels
+        all_results = self._filter_channels(all_results)
+
         # Aggregate all mentioned channels
         channel_counts = Counter()
 
@@ -103,9 +131,25 @@ class ExtendedVisualizer:
             print("⚠️  No Telegram channel references found")
             return
 
-        # Filter out likely bots and short names
-        filtered = [(ch, cnt) for ch, cnt in top_channels
-                   if len(ch) > 2 and not ch.endswith('_bot')][:20]
+        # Self-reference and bot patterns to filter out
+        EXCLUDED_PATTERNS = [
+            'joinchat', 'PromotionMonako', 'nikitos077',
+            'addstickers', 'share', 'proxy', 'socks',
+            'setlanguage', 'bot', '_bot', 'Bot'
+        ]
+
+        # Filter out self-references, promotion bots, and short names
+        filtered = []
+        for ch, cnt in top_channels:
+            # Skip if too short
+            if len(ch) <= 2:
+                continue
+            # Skip if matches excluded patterns
+            if any(pattern.lower() in ch.lower() for pattern in EXCLUDED_PATTERNS):
+                continue
+            filtered.append((ch, cnt))
+            if len(filtered) >= 20:
+                break
 
         channels, counts = zip(*filtered)
 
@@ -139,12 +183,15 @@ class ExtendedVisualizer:
 
     def create_reference_category_breakdown(self, all_results: Dict):
         """
-        Create pie charts showing reference category breakdown.
+        Create pie charts showing reference category breakdown including traditional media.
 
         Args:
             all_results: Analysis results for all channels
         """
-        # Aggregate reference categories
+        # Filter out excluded channels
+        all_results = self._filter_channels(all_results)
+
+        # Aggregate reference categories (non-media)
         category_counts = Counter()
 
         for channel_name, results in all_results.items():
@@ -154,6 +201,17 @@ class ExtendedVisualizer:
 
             for category, count in ref_cats.items():
                 category_counts[category] += count
+
+        # Add traditional media references count (IMPORTANT: this shows media contribution)
+        traditional_media_count = 0
+        for channel_name, results in all_results.items():
+            stats = results.get('statistics', {})
+            # Count messages influenced by media
+            influenced = stats.get('influenced_by_media', 0)
+            traditional_media_count += influenced
+
+        # Always add Traditional Media to show complete picture
+        category_counts['Traditional Media'] = traditional_media_count
 
         if not category_counts:
             print("⚠️  No reference categories found")
@@ -177,11 +235,35 @@ class ExtendedVisualizer:
 
         labels = list(main_categories.keys())
         sizes = list(main_categories.values())
-        colors = plt.cm.Set3(np.linspace(0, 1, len(labels)))
 
-        # Create pie with explode for top categories
+        # Create custom color scheme with Traditional Media highlighted
+        colors_list = []
+        for label in labels:
+            if label == 'Traditional Media':
+                colors_list.append('#3498db')  # Blue for traditional media (stands out)
+            elif label == 'Telegram Channels':
+                colors_list.append('#2ecc71')  # Green for telegram
+            elif label == 'YouTube':
+                colors_list.append('#e74c3c')  # Red for youtube
+            elif label == 'Facebook':
+                colors_list.append('#9b59b6')  # Purple for facebook
+            elif label == 'Other domains':
+                colors_list.append('#f39c12')  # Orange/yellow for other
+            else:
+                colors_list.append('#95a5a6')  # Gray for smaller categories
+
+        colors = colors_list
+
+        # Create pie with explode for top categories (including Traditional Media)
         total = sum(sizes)
-        explode = [0.05 if s/total > 0.15 else 0 for s in sizes]
+        explode = []
+        for label, size in zip(labels, sizes):
+            if label == 'Traditional Media':
+                explode.append(0.1)  # Emphasize Traditional Media more
+            elif size/total > 0.15:
+                explode.append(0.05)
+            else:
+                explode.append(0)
 
         wedges, texts, autotexts = ax.pie(sizes, labels=labels, autopct='%1.1f%%',
                                            colors=colors, explode=explode,
@@ -192,7 +274,7 @@ class ExtendedVisualizer:
             autotext.set_color('white')
             autotext.set_fontweight('bold')
 
-        ax.set_title('Non-Media Reference Distribution\n(What sources do channels cite besides traditional media?)',
+        ax.set_title('Complete Reference Distribution\n(All sources cited by channels: Traditional Media + Other References)',
                      fontsize=16, fontweight='bold', pad=20)
 
         # Add legend with counts
@@ -214,6 +296,9 @@ class ExtendedVisualizer:
         Args:
             all_results: Analysis results for all channels
         """
+        # Filter out excluded channels
+        all_results = self._filter_channels(all_results)
+
         # Prepare data
         data = []
 
@@ -389,8 +474,17 @@ class ExtendedVisualizer:
         Args:
             all_results: Analysis results for all channels
         """
+        # Filter out excluded channels
+        all_results = self._filter_channels(all_results)
+
+        # Define traditional media channels
+        traditional_media = {
+            'Українська правда', 'Суспільне Новини', 'ТСН Новини', 'УНИАН'
+        }
+
         # Prepare data
-        data = []
+        independent_data = []
+        traditional_data = []
 
         for channel_name, results in all_results.items():
             stats = results.get('statistics', {})
@@ -398,19 +492,33 @@ class ExtendedVisualizer:
             total = stats.get('total_messages', 0)
 
             if total > 0:
-                data.append({
+                channel_info = {
                     'Channel': channel_name[:25],
                     'Links': (breakdown.get('link_only', 0) / total) * 100,
                     'Mentions': (breakdown.get('mention_only', 0) / total) * 100,
                     'Similarity': (breakdown.get('similarity_only', 0) / total) * 100,
                     'Multiple': (breakdown.get('multiple_methods', 0) / total) * 100,
-                })
+                }
 
-        df = pd.DataFrame(data)
+                if channel_name in traditional_media:
+                    traditional_data.append(channel_info)
+                else:
+                    independent_data.append(channel_info)
 
-        # Sort by total influence
-        df['Total'] = df['Links'] + df['Mentions'] + df['Similarity'] + df['Multiple']
-        df = df.sort_values('Total', ascending=True)
+        # Create DataFrames and sort each group
+        df_independent = pd.DataFrame(independent_data)
+        df_traditional = pd.DataFrame(traditional_data)
+
+        if not df_independent.empty:
+            df_independent['Total'] = df_independent['Links'] + df_independent['Mentions'] + df_independent['Similarity'] + df_independent['Multiple']
+            df_independent = df_independent.sort_values('Total', ascending=True)
+
+        if not df_traditional.empty:
+            df_traditional['Total'] = df_traditional['Links'] + df_traditional['Mentions'] + df_traditional['Similarity'] + df_traditional['Multiple']
+            df_traditional = df_traditional.sort_values('Total', ascending=True)
+
+        # Combine with independent first, then traditional
+        df = pd.concat([df_independent, df_traditional], ignore_index=True)
 
         # Create stacked horizontal bar
         fig, ax = plt.subplots(figsize=(14, 10))
@@ -429,6 +537,23 @@ class ExtendedVisualizer:
                label='Similarity Only', color='#2ca02c')
         ax.barh(y_pos, multiple, left=links+mentions+similarity,
                label='Multiple Methods', color='#d62728')
+
+        # Add separator line between groups if we have both types
+        if not df_independent.empty and not df_traditional.empty:
+            separator_pos = len(df_independent) - 0.5
+            ax.axhline(y=separator_pos, color='black', linewidth=2, linestyle='--', alpha=0.5)
+
+            # Add section labels
+            if len(df_independent) > 0:
+                ax.text(-15, len(df_independent) / 2, 'Independent\nChannels',
+                       fontsize=11, fontweight='bold', ha='right', va='center',
+                       bbox=dict(boxstyle='round', facecolor='lightblue', alpha=0.3))
+
+            if len(df_traditional) > 0:
+                mid_traditional = len(df_independent) + len(df_traditional) / 2
+                ax.text(-15, mid_traditional, 'Traditional\nMedia',
+                       fontsize=11, fontweight='bold', ha='right', va='center',
+                       bbox=dict(boxstyle='round', facecolor='lightgreen', alpha=0.3))
 
         ax.set_yticks(y_pos)
         ax.set_yticklabels(channels, fontsize=10)

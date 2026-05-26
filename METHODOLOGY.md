@@ -89,23 +89,23 @@ telegram_date - media_date <= 48 hours  # configurable
 ## Data Collection
 
 ### Telegram Data
-- **Source**: 13 popular Ukrainian Telegram channels
+- **Source**: 13 popular Ukrainian Telegram channels (including both independent channels and traditional media's Telegram accounts)
 - **Tool**: Telethon API
 - **Data Points**:
   - Message ID, date, text
   - View count, forward count
   - URLs and entities
-- **Time Range**: Configurable (default: last 3 months)
+- **Time Range**: Configurable (default: last 48 hours, max 10,000 messages per channel)
 
 ### Media Data
-- **Source**: 17 traditional Ukrainian media outlets
+- **Source**: 142 traditional Ukrainian media outlets (18 national, 124 regional)
 - **Tools**:
   - RSS feed parsing (primary)
   - newspaper3k for article extraction
 - **Data Points**:
   - Article URL, title, full text
   - Publish date, authors
-- **Time Range**: Same as Telegram data
+- **Time Range**: Same as Telegram data (default: 48 hours)
 
 ### Configuration
 All data sources are configurable via JSON files:
@@ -211,6 +211,31 @@ Where `messages_with_media_influence` = messages detected by ANY of the three me
 - Channel selection may not represent all Telegram users
 - Media selection focused on mainstream outlets
 - Analysis doesn't evaluate content quality or accuracy
+
+## Extended Visualizations
+
+The project now includes comprehensive visualizations:
+
+### 1. **Reference Categories Distribution**
+- Pie chart showing all citation types (Traditional Media, Telegram Channels, YouTube, Facebook, etc.)
+- Distinguishes between messages (40% contain traditional media references) vs citations (22.3% of all URLs point to traditional media)
+
+### 2. **Detection Methods Breakdown**
+- Separated visualization for Independent Channels vs Traditional Media Channels
+- Shows that traditional media's own Telegram accounts (77-79% self-citation) vs independent channels (20-53% influenced)
+
+### 3. **Temporal Analysis**
+- Message volume over time
+- Activity heatmaps (hourly and daily patterns)
+- Citation patterns throughout the day
+
+### 4. **Bidirectional Influence**
+- Which media outlets are most cited in Telegram
+- Which Telegram channels are cited by traditional media
+
+### 5. **Interactive Presentation**
+- `presentation.html`: Full presentation with methodology, findings, and visualizations
+- `presentation_standalone.html`: Self-contained version (3MB) with Base64-embedded images for easy sharing
 
 ## Future Enhancements
 
