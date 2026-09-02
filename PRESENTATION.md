@@ -54,7 +54,7 @@ This document explains how to use and share the research presentation files.
   - **22.3% of all URLs** point to traditional media (messages often cite multiple sources)
   
   **Example**: A message citing "Українська правда + BBC + YouTube" counts as:
-  - 1 message with traditional media influence (→ included in 40%)
+  - 1 message with traditional media content reproduction (→ included in 40%)
   - 3 citations, only 1 to traditional media (→ 33% of citations)
 
 ### 5. Visualizations
@@ -67,7 +67,7 @@ This document explains how to use and share the research presentation files.
 
 #### Detection Methods Breakdown (Bar Chart)
 - **Two sections separated by dashed line**:
-  - **Independent Channels** (bottom): 20-53% influenced by traditional media
+  - **Independent Channels** (bottom): 20-53% content reproduced from traditional media
   - **Traditional Media Channels** (top): 77-79% cite their own content (expected)
 - Color coding:
   - Blue: Links only
@@ -81,8 +81,8 @@ This document explains how to use and share the research presentation files.
 
 ### 6. Conclusions
 - Traditional media competes with many other sources
-- Independent channels show significant media influence
-- Most influence through mentions and semantic similarity, not direct links
+- Independent channels show significant content reproduction from media
+- Most content reproduction detected through mentions and semantic similarity, not direct links
 
 ## Key Insights to Highlight
 
@@ -95,12 +95,12 @@ This is the most important clarification:
 
 ### 2. Channel Type Separation
 - **Independent channels** (9): Труха Україна, Батальон "Монако", etc.
-  - 20-53% influenced by traditional media
+  - 20-53% content reproduced from traditional media
 - **Traditional media channels** (4): Українська правда, Суспільне, ТСН, УНИАН
   - 77-79% cite their own content (this is expected behavior)
 
 ### 3. Detection Method Effectiveness
-- **Mentions** and **semantic similarity** detect most influence
+- **Mentions** and **semantic similarity** detect most content reproduction
 - **Direct links** are less common
 - This suggests much content is rephrased or attributed verbally rather than linked
 

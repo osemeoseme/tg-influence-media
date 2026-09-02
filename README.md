@@ -1,6 +1,6 @@
-# Influence of Traditional Media on Telegram Channels
+# Content Reproduction of Traditional Media in Telegram Channels
 
-Research project analyzing how traditional Ukrainian media influences popular Telegram news channels.
+Research project analyzing how traditional Ukrainian media content is reproduced in popular Telegram news channels.
 
 ## Quick Links
 
@@ -10,11 +10,11 @@ Research project analyzing how traditional Ukrainian media influences popular Te
 
 ## Project Overview
 
-This project investigates the influence of traditional media outlets on popular Telegram channels by analyzing what percentage of Telegram content can be traced back to traditional media sources. The goal is to demonstrate the continued value of professional journalism in the social media ecosystem.
+This project investigates the content reproduction from traditional media outlets in popular Telegram channels by analyzing what percentage of Telegram content can be traced back to traditional media sources. The goal is to demonstrate the continued value of professional journalism in the social media ecosystem.
 
 ### Problem Statement
 
-Traditional media faces devaluation against unprofessional content producers on social networks, leading to declining advertiser and reader interest. This research aims to show the noticeable influence of traditional media on popular Telegram channels.
+Traditional media faces devaluation against unprofessional content producers on social networks, leading to declining advertiser and reader interest. This research aims to demonstrate the observable reproduction of traditional media content in popular Telegram channels.
 
 ## Methodology
 
@@ -155,8 +155,8 @@ The analysis generates:
 
 ## Key Metrics
 
-- **Percentage Influenced**: Portion of Telegram content traced to traditional media
-- **Detection Breakdown**: How influence was detected (links, mentions, similarity)
+- **Percentage Reproduced**: Portion of Telegram content traced to traditional media
+- **Detection Breakdown**: How content reproduction was detected (links, mentions, similarity)
 - **Media Rankings**: Most referenced media outlets
 - **Channel Comparison**: Which channels rely most on traditional media
 

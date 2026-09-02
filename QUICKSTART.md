@@ -98,9 +98,9 @@ All output files are saved in the `data/` directory:
 
 The analysis provides three key metrics:
 
-1. **Percentage Influenced**: What percentage of Telegram messages are influenced by traditional media?
+1. **Percentage Reproduced**: What percentage of Telegram messages reproduce content from traditional media?
 
-2. **Detection Method Breakdown**: How was the influence detected?
+2. **Detection Method Breakdown**: How was content reproduction detected?
    - Direct links to media articles
    - Mentions of media names
    - Semantic similarity (rephrased content)

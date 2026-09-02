@@ -1,10 +1,10 @@
-# Methodology: Analyzing Media Influence on Telegram Channels
+# Methodology: Analyzing Media Content Reproduction in Telegram Channels
 
 ## Research Question
 
 **What percentage of news content in popular Telegram channels is sourced from traditional media outlets?**
 
-This project investigates the influence of traditional Ukrainian media on popular Telegram news channels to demonstrate the continued value of professional journalism in the social media ecosystem.
+This project investigates the content reproduction from traditional Ukrainian media in popular Telegram news channels to demonstrate the continued value of professional journalism in the social media ecosystem.
 
 ## Approach
 
@@ -66,7 +66,7 @@ The analysis uses three complementary detection methods to identify when Telegra
 
 **Advantages**:
 - Detects rephrased content without attribution
-- Captures the actual content influence, not just citations
+- Captures actual content reproduction, not just citations
 - Language-aware semantic understanding
 
 **Limitations**:
@@ -149,7 +149,7 @@ Combine all detection results → Calculate statistics → Generate reports
 ## Key Metrics
 
 ### Primary Metric
-**Percentage Influenced**: What portion of Telegram content can be traced to traditional media?
+**Percentage Reproduced**: What portion of Telegram content can be traced to traditional media?
 
 ```
 influenced_percentage = (messages_with_media_influence / total_messages) × 100
@@ -222,14 +222,14 @@ The project now includes comprehensive visualizations:
 
 ### 2. **Detection Methods Breakdown**
 - Separated visualization for Independent Channels vs Traditional Media Channels
-- Shows that traditional media's own Telegram accounts (77-79% self-citation) vs independent channels (20-53% influenced)
+- Shows that traditional media's own Telegram accounts (77-79% self-citation) vs independent channels (20-53% content reproduced from traditional media)
 
 ### 3. **Temporal Analysis**
 - Message volume over time
 - Activity heatmaps (hourly and daily patterns)
 - Citation patterns throughout the day
 
-### 4. **Bidirectional Influence**
+### 4. **Bidirectional Content Reproduction**
 - Which media outlets are most cited in Telegram
 - Which Telegram channels are cited by traditional media
 

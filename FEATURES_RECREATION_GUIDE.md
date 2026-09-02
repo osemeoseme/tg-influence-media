@@ -88,12 +88,12 @@ This document contains a complete specification for recreating all new features 
 ### 3. Bidirectional Influence Analyzer
 **File**: `src/analyzers/bidirectional_influence.py`
 
-**Purpose**: Analyze influence in both directions - Media → Telegram and Telegram → Media.
+**Purpose**: Analyze content reproduction in both directions - Media → Telegram and Telegram → Media.
 
 **Key Components**:
-- Time window for influence analysis (default 48 hours)
+- Time window for content reproduction analysis (default 48 hours)
 - Media domain to name mapping (suspilne.media → "Суспільне", espreso.tv → "Еспресо", etc.)
-- Influence tracking in both directions
+- Content reproduction tracking in both directions
 
 **Methods**:
 1. `analyze_media_to_telegram(telegram_messages, media_articles) -> Dict` - Returns:
@@ -141,7 +141,7 @@ This document contains a complete specification for recreating all new features 
 ### 4. Interactive Visualizer
 **File**: `src/processors/interactive_visualizations.py`
 
-**Purpose**: Create interactive Plotly visualizations for influence analysis.
+**Purpose**: Create interactive Plotly visualizations for content reproduction analysis.
 
 **Dependencies**: `plotly`, `networkx`
 
@@ -168,7 +168,7 @@ This document contains a complete specification for recreating all new features 
 3. `create_channel_comparison(all_results) -> go.Figure`
    - Side-by-side subplots
    - Left: Total messages bar chart
-   - Right: Influence percentage with color scale
+   - Right: Content reproduction percentage with color scale
    - Saves to: `channel_comparison.html`
 
 4. `create_content_type_distribution(all_results) -> go.Figure`
@@ -535,13 +535,13 @@ networkx>=3.0
 
 ---
 
-### Feature 4: Bidirectional Influence Analysis
+### Feature 4: Bidirectional Content Reproduction Analysis
 **Two Directions**:
 
 **Media → Telegram** (traditional):
 - Count how many times each media is referenced in Telegram
 - Track: mentions, links, similarity matches
-- Show which media influences which channels
+- Show which media content is reproduced in which channels
 - Rank by total references
 
 **Telegram → Media** (reverse):
@@ -551,7 +551,7 @@ networkx>=3.0
 - Rank by citation count
 
 **Comparison**:
-- Calculate strength of influence in each direction
+- Calculate strength of content reproduction in each direction
 - Determine dominant direction
 - Provide top 5 influencers in each direction
 
@@ -580,7 +580,7 @@ networkx>=3.0
 3. **Channel Comparison** (`channel_comparison.html`)
    - Two subplots side-by-side
    - Left: Total messages (bar chart)
-   - Right: Influence percentage (colored bar chart)
+   - Right: Content reproduction percentage (colored bar chart)
    - Shows all channels
 
 4. **Content Types** (`content_types.html`)
@@ -785,7 +785,7 @@ After running `python main.py all`, you should have:
 2. ✅ Non-media reference tracking
 3. ✅ Official government source detection
 4. ✅ Case-insensitive name matching with variants
-5. ✅ Bidirectional influence analysis (Media↔Telegram)
+5. ✅ Bidirectional content reproduction analysis (Media↔Telegram)
 6. ✅ 4 interactive HTML visualizations
 7. ✅ Configurable start date for data collection
 
@@ -795,7 +795,7 @@ After running `python main.py all`, you should have:
 3. Non-media references? → Reference detector
 4. All media sources included? → Already present, verified
 5. Case variations? → Enhanced mention detector
-6. Who influences whom more? → Bidirectional analysis
+6. Who reproduces content from whom more? → Bidirectional analysis
 7. Interactive visualization? → 4 Plotly charts
 
 ---

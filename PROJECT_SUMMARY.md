@@ -1,4 +1,4 @@
-# Project Summary: Influence of Traditional Media on Telegram Channels
+# Project Summary: Content Reproduction of Traditional Media in Telegram Channels
 
 ## What This Project Does
 
@@ -57,7 +57,7 @@ Configuration:
 Source Code:
 ├── src/
 │   ├── scrapers/              # Collect data from Telegram & web
-│   ├── analyzers/             # Detect media influence
+│   ├── analyzers/             # Detect media content reproduction
 │   ├── processors/            # Generate reports
 │   └── utils/                 # Helper functions
 
@@ -124,13 +124,13 @@ This will:
 
 Based on analysis of 1M+ messages:
 
-- **40% of messages** reference or are influenced by traditional media sources
+- **40% of messages** reference or reproduce content from traditional media sources
 - **22.3% of all citations** (URLs) point to traditional media (messages often cite multiple sources)
-- **Independent channels**: 20-53% show traditional media influence
+- **Independent channels**: 20-53% show traditional media content reproduction
 - **Traditional media's own Telegram accounts**: 77-79% cite their own content (expected)
 
 **Detection method breakdown:**
-- Most influence detected through **media mentions** (implicit citations) and **semantic similarity**
+- Most content reproduction detected through **media mentions** (implicit citations) and **semantic similarity**
 - Direct links are less common than rephrased/mentioned content
 
 **Key insight:** Messages vs Citations distinction
@@ -190,13 +190,13 @@ MAX_MESSAGES_PER_CHANNEL=10000
 Complete the UCU Machine Learning course project requirements
 
 ### For Research
-- Understand media influence patterns
+- Understand media content reproduction patterns
 - Analyze information flow
 - Study content attribution practices
 
 ### For Media Organizations
 - Track how your content spreads
-- Measure your influence
+- Measure your content reproduction
 - Demonstrate value to advertisers
 
 ### For Future Work
@@ -208,7 +208,7 @@ Complete the UCU Machine Learning course project requirements
 
 1. **Code**: Complete, documented Python codebase
 2. **Data**: Scraped Telegram and media data (3 months)
-3. **Analysis**: Comprehensive influence analysis
+3. **Analysis**: Comprehensive content reproduction analysis
 4. **Reports**:
    - Text summary report
    - Visualizations (charts, graphs)
@@ -240,7 +240,7 @@ After completing the basic analysis:
 ### Issue: Similarity analysis is slow
 **Solution**: Normal - uses deep learning. Consider GPU or smaller dataset.
 
-### Issue: Low influence percentage
+### Issue: Low content reproduction percentage
 **Solution**: May be accurate - not all content originates from traditional media
 
 ## Support & Resources
@@ -252,7 +252,7 @@ After completing the basic analysis:
 
 ## Conclusion
 
-This project provides a **complete, automated solution** for analyzing media influence on Telegram channels. The code is production-ready, well-documented, and easily extensible for future research.
+This project provides a **complete, automated solution** for analyzing media content reproduction in Telegram channels. The code is production-ready, well-documented, and easily extensible for future research.
 
 **Estimated project completion time**: 20 hours
 - Setup & testing: 2 hours
